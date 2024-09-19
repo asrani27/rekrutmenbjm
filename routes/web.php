@@ -8,6 +8,7 @@ use App\Http\Controllers\WasabiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UploaderController;
 use App\Http\Controllers\MediaLibraryController;
+use App\Http\Controllers\SuperadminController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [RegisterController::class, 'index']);
@@ -30,11 +31,23 @@ Route::get('/email/verification-notification', function () {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     Route::get('/user/home', [UserController::class, 'home']);
     Route::post('/user/home/upload', [UserController::class, 'upload']);
     Route::get('/user/home/editprofile', [UserController::class, 'editProfile']);
     Route::post('/user/home/editprofile', [UserController::class, 'updateProfile']);
+});
+
+Route::middleware(['auth', 'role:superadmin'])->group(function () {
+    Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
+    Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
+    Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);
+    Route::get('/admin/bidang/edit/{id}', [SuperadminController::class, 'edit_bidang']);
+    Route::post('/admin/bidang/edit/{id}', [SuperadminController::class, 'update_bidang']);
+    Route::get('/admin/bidang/delete/{id}', [SuperadminController::class, 'delete_bidang']);
+    Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
+    Route::get('/admin/home', [SuperadminController::class, 'home']);
+    Route::post('/admin/pendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
 });
 Route::get('oauth/google', [LoginController::class, 'redirectToProvider'])->name('oauth.google');
 Route::get('oauth/google/callback', [LoginController::class, 'handleProviderCallback'])->name('oauth.google.callback');

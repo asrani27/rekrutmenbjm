@@ -22,7 +22,7 @@
 </div>
 
   <div class="col-lg-2">
-    <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url(/nf/static/photos/beautiful-blonde-woman-relaxing-with-a-can-of-coke-on-a-tree-stump-by-the-beach.jpg)"></div>
+    <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url(/icon/person.gif)"></div>
   </div>
   <div class="col-lg-10">
     <div class="card">
@@ -92,6 +92,24 @@
           </tr>
           <tr>
             <td>KTP</td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+            </td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              <a href=# class="btn btn-md btn-outline-primary">upload</a>
+            </td>
+          </tr>
+          <tr>
+            <td>IJAZAH PENDIDIKAN TERAKHIR</td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+            </td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              <a href=# class="btn btn-md btn-outline-primary">upload</a>
+            </td>
+          </tr>
+          <tr>
+            <td>SERTIFIKAT PRESTASI (JIKA ADA)</td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
             </td>

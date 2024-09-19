@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -28,22 +29,29 @@ class LoginController extends Controller
             $turnstile = new TurnstileLaravel;
             $response = $turnstile->validate($req->get('cf-turnstile-response'));
 
+            $login = request()->input('username');
+            $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
             if ($response['status'] == true) {
 
-                $remember = $req->remember ? true : false;
+                // $remember = $req->remember ? true : false;
                 $credential = $req->only('username', 'password');
 
-                if (Auth::attempt($credential, $remember)) {
+                if (Auth::attempt([$field => $login, 'password' => request()->password], true)) {
+                    // if (Auth::attempt($credential, $remember)) {
 
-                    if (Auth::user()->roles == 'user') {
+                    if (Auth::user()->roles === 'user') {
                         return redirect('/user/home');
-                    } else
-                        Session::flash('success', 'Selamat Datang');
-                    return 'role lain';
+                    } else {
+                        return redirect('/admin/home');
+                    }
+                } else {
+                    $req->flash();
+                    return redirect('/login')->with('error', 'Wrong Username Or Password');
                 }
             } else {
                 $req->flash();
-                return back()->with('error', 'Wrong Username Or Password');
+                return back()->with('error', 'Check Captcha');
             }
         }
     }
@@ -66,12 +74,18 @@ class LoginController extends Controller
 
                 return redirect('/user/home');
             } else {
+                $newProfile = new Profile();
+                $newProfile->email = $user->email;
+                $newProfile->save();
+
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
+                    'roles' => 'user',
                     'gauth_id' => $user->id,
                     'gauth_type' => 'google',
-                    'password' => encrypt('admin@123')
+                    'password' => encrypt('user@123'),
+                    'profile_id' => $newProfile->id,
                 ]);
                 $newUser->markEmailAsVerified();
                 Auth::login($newUser);
