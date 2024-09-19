@@ -22,24 +22,28 @@ class SuperadminController extends Controller
     }
     public function streamPDF($id)
     {
-        $data = Profile::find($id);
+        try {
+            $data = Profile::find($id);
 
-        $oMerger = PDFMerger::init();
+            $oMerger = PDFMerger::init();
 
-        $pathKTP = public_path('storage') . '/pdf/' . $data->file_ktp;
-        $pathIJAZAH = public_path('storage') . '/pdf/' . $data->file_ijazah;
-        $pathSERTIFIKAT = public_path('storage') . '/pdf/' . $data->file_sertifikat;
-        $oMerger->addPDF($pathKTP);
-        $oMerger->addPDF($pathIJAZAH);
-        $oMerger->addPDF($pathSERTIFIKAT, 'all');
+            $pathKTP = public_path('storage') . '/pdf/' . $data->file_ktp;
+            $pathIJAZAH = public_path('storage') . '/pdf/' . $data->file_ijazah;
+            $pathSERTIFIKAT = public_path('storage') . '/pdf/' . $data->file_sertifikat;
+            $oMerger->addPDF($pathKTP);
+            $oMerger->addPDF($pathIJAZAH);
+            $oMerger->addPDF($pathSERTIFIKAT, 'all');
 
 
-        $oMerger->merge();
-        $oMerger->save('storage/merge/' . $data->id . '.pdf');
+            $oMerger->merge();
+            $oMerger->save('storage/merge/' . $data->id . '.pdf');
 
-        $pathToFile = public_path() . '/storage/merge/' . $data->id . '.pdf';
+            $pathToFile = public_path() . '/storage/merge/' . $data->id . '.pdf';
 
-        return response()->file($pathToFile);
+            return response()->file($pathToFile);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
     public function berkasPendaftar($id)
     {
