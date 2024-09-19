@@ -10,7 +10,7 @@
           Overview
         </div>
         <h2 class="page-title">
-          Data Pendaftar Staf Khususu
+          Data Pendaftar Staf Khusus
         </h2>
       </div>
       <!-- Page title actions -->
@@ -53,25 +53,28 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($data as $key=> $item)
+                
             <tr>
-              <td>1</td>
+              <td>{{$key + 1}}</td>
               <td>
                 <div class="d-flex py-1 align-items-center">
-                  <span class="avatar me-2" style="background-image: url(./static/avatars/006m.jpg)"></span>
+                  <span class="avatar me-2" style="background-image: url(/storage/foto/{{$item->file_foto}})"></span>
                   <div class="flex-fill">
-                    <div class="font-weight-medium">Lorry Mion</div>
-                    <div class="text-secondary"><a href="#" class="text-reset">lmiona@livejournal.com</a></div>
+                    <div class="font-weight-medium">{{$item->nama_lengkap}}</div>
+                    <div class="text-secondary"><a href="#" class="text-reset">{{\Carbon\Carbon::parse($item->tanggal_lahir)->age}} Tahun</a></div>
                   </div>
                 </div>
               </td>
               <td>
-                <div>Automation Specialist IV</div>
-                <div class="text-secondary">Accounting</div>
+                <div>{{$item->bidang == null ? '' : $item->bidang->nama}}</div>
+                <div class="text-secondary"></div>
               </td>
               <td>
-                <a href="#" class="btn btn-outline-primary">Detail</a>
+                <a href="/admin/detailpendaftar/{{$item->id}}" class="btn btn-outline-primary">Detail</a>
               </td>
             </tr>
+            @endforeach
             
           </tbody>
         </table>

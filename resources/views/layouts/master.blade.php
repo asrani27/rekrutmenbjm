@@ -11,6 +11,9 @@
     <link href="/nf/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet"/>
     <link href="/nf/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet"/>
     <link href="/nf/dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet"/>
+    
+    @stack('css')
+    
     <style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
@@ -39,7 +42,11 @@
             
             <div class="nav-item dropdown">
               <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                @if (Auth::user()->roles === 'user')
+                <span class="avatar avatar-sm" style="background-image: url(/storage/foto/{{$data->file_foto}})"></span>
+                @else
                 <span class="avatar avatar-sm" style="background-image: url(/nf/static/avatars/000m.jpg)"></span>
+                @endif
                 <div class="d-none d-xl-block ps-2">
                   <div>{{strtoupper(Auth::user()->name)}}</div>
                   <div class="mt-1 small">

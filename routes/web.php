@@ -36,9 +36,14 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::post('/user/home/upload', [UserController::class, 'upload']);
     Route::get('/user/home/editprofile', [UserController::class, 'editProfile']);
     Route::post('/user/home/editprofile', [UserController::class, 'updateProfile']);
+    Route::get('/user/home/essay', [UserController::class, 'essay']);
+    Route::post('/user/home/essay', [UserController::class, 'updateEssay']);
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
+    Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
+    Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);
+    Route::get('/admin/streampdf/{id}', [SuperadminController::class, 'streamPDF']);
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
     Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);

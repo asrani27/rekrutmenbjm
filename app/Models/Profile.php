@@ -12,4 +12,9 @@ class Profile extends Model
     use HasUuids;
     protected $table = 'profile';
     protected $guarded = ['id'];
+
+    public function bidang()
+    {
+        return $this->belongsTo(Bidang::class, 'bidang_id');
+    }
 }

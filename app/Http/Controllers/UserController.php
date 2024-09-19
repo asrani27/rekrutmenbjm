@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Image;
+use App\Models\Bidang;
 use App\Models\Upload;
 use App\Models\Profile;
 use Illuminate\Support\Str;
@@ -10,8 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Cache\Store;
-use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Imagick\Driver;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -24,6 +25,21 @@ class UserController extends Controller
         return view('user.home', compact('data'));
     }
 
+    public function essay()
+    {
+        $data = Auth::user()->profile;
+        $bidang = Bidang::get();
+        return view('user.essay', compact('data', 'bidang'));
+    }
+    public function updateEssay(Request $req)
+    {
+
+        $data = Auth::user()->profile;
+        $data->essay = $req->essay;
+        $data->bidang_id = $req->bidang_id;
+        $data->save();
+        return redirect('/user/home')->with('success', 'Essay berhasil di update');
+    }
     public function editProfile()
     {
         $data = Auth::user()->profile;
