@@ -57,12 +57,29 @@ class UserController extends Controller
         if ($data == null) {
             //create data
             $n = new Profile();
-            $n->nama = $req->nama;
-            $n->nik = $req->nik;
-            $n->jkel = $req->jkel;
-            $n->tanggal_lahir = $req->tanggal_lahir;
-            $n->telp = $req->telp;
-            $n->alamat = $req->alamat;
+            $n->nik             = $req->nik;
+            $n->nokk            = $req->nokk;
+            $n->nama_lengkap    = $req->nama_lengkap;
+            $n->nama_panggilan  = $req->nama_panggilan;
+            $n->kewarganegaraan = $req->kewarganegaraan;
+            $n->jkel            = $req->jkel;
+            $n->tanggal_lahir   = $req->tanggal_lahir;
+            $n->tempat_lahir    = $req->tempat_lahir;
+            $n->status_menikah  = $req->status_menikah;
+            $n->telp            = $req->telp;
+            $n->alamat_ktp      = $req->alamat_ktp;
+            $n->kota_ktp        = $req->kota_ktp;
+            $n->kodepos_ktp     = $req->kodepos_ktp;
+            $n->alamat_saat_ini = $req->alamat_saat_ini;
+            $n->kota_saat_ini   = $req->kota_saat_ini;
+            $n->kodepos_saat_ini    = $req->kodepos_saat_ini;
+            $n->pendidikan_terakhir = $req->pendidikan_terakhir;
+            $n->jurusan             = $req->jurusan;
+            $n->ipk                 = $req->ipk;
+            $n->pekerjaan           = $req->pekerjaan;
+            $n->facebook            = $req->facebook;
+            $n->instagram           = $req->instagram;
+            $n->tiktok              = $req->tiktok;
             $n->save();
 
             $auth = Auth::user();

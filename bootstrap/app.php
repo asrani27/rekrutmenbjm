@@ -22,9 +22,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'user' => User::class,
         ]);
     })
-    ->withMiddleware(function (Middleware $middleware) {
-        //
-    })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();

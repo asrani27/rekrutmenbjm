@@ -27,8 +27,26 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
+                    <label class="form-label">NO KK</label>
+                    <input type="text" class="form-control" name="nokk" placeholder="no kk" value="{{$data == null ? null : $data->nokk}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Nama" value="{{$data == null ? null : $data->nama}}" required>
+                    <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="{{$data == null ? null : $data->nama_lengkap}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Nama Panggilan</label>
+                    <input type="text" class="form-control" name="nama_panggilan" placeholder="Nama Panggilan" value="{{$data == null ? null : $data->nama_panggilan}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Kewarganegaraan</label>
+                    <input type="text" class="form-control" name="kewarganegaraan" placeholder="Indonesia" value="{{$data == null ? null : $data->kewarganegaraan}}" required>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
@@ -48,23 +66,120 @@
                     <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal" value="{{$data == null ? null : $data->tanggal_lahir}}" required>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-12">
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Tempat Lahir</label>
+                    <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="{{$data == null ? null : $data->tempat_lahir}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Status Menikah</label>
+                    <select class="form-control" required name="status_menikah">
+                        <option value="">-pilih-</option>
+                        <option value="T">Belum Menikah</option>
+                        <option value="Y">Menikah</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
                     <label class="form-label">Telp</label>
                     <input type="text" class="form-control" name="telp" placeholder="Telp" value="{{$data == null ? null : $data->telp}}" required>
                     </div>
                 </div>
-                {{-- <div class="col-sm-6 col-md-6">
-                    <div class="mb-3">
-                    <label class="form-label">Foto</label>
-                    <input type="file" class="form-control" name="file" placeholder="file">
-                    </div>
-                </div> --}}
                 
                 <div class="col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="alamat" placeholder="alamat" value="{{$data == null ? null : $data->alamat}}" required>
+                    <label class="form-label">Alamat Sesuai KTP</label>
+                    <input type="text" class="form-control" name="alamat_ktp" placeholder="alamat sesuai KTP" value="{{$data == null ? null : $data->alamat_ktp}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Kabupaten/Kota Sesuai KTP</label>
+                    <input type="text" class="form-control" name="kota_ktp" placeholder="kota sesuai KTP" value="{{$data == null ? null : $data->kota_ktp}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Kodepos Sesuai KTP</label>
+                    <input type="text" class="form-control" name="kodepos_ktp" placeholder="Kodepos sesuai KTP" value="{{$data == null ? null : $data->kodepos_ktp}}" required>
+                    </div>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="mb-3">
+                    <label class="form-label">Alamat Saat Ini</label>
+                    <input type="text" class="form-control" name="alamat_saat_ini" placeholder="alamat Saat Ini" value="{{$data == null ? null : $data->alamat_saat_ini}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Kabupaten/Kota Saat Ini</label>
+                    <input type="text" class="form-control" name="kota_saat_ini" placeholder="kota Saat Ini" value="{{$data == null ? null : $data->kota_saat_ini}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Kodepos Saat Ini</label>
+                    <input type="text" class="form-control" name="kodepos_saat_ini" placeholder="Kodepos Saat Ini" value="{{$data == null ? null : $data->kodepos_saat_ini}}" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Pendidikan Terakhir</label>
+                    <select class="form-control" required name="pendidikan_terakhir">
+                        <option value="">-pilih-</option>
+                        <option value="SMA" {{$data->pendidikan_terakhir == 'SMA' ? 'selected':''}}>SMA/sederajat</option>
+                        <option value="D3" {{$data->pendidikan_terakhir == 'D3' ? 'selected':''}}>D3</option>
+                        <option value="S1" {{$data->pendidikan_terakhir == 'S1' ? 'selected':''}}>S1</option>
+                        <option value="S2" {{$data->pendidikan_terakhir == 'S2' ? 'selected':''}}>S2</option>
+                        <option value="S3" {{$data->pendidikan_terakhir == 'S3' ? 'selected':''}}>S3</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Nama SMA/Akademik/Universitas</label>
+                    <input type="text" class="form-control" name="akademik" placeholder="Nama Akademik / Universitas" value="{{$data == null ? null : $data->akademik}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Jurusan/Prodi</label>
+                    <input type="text" class="form-control" name="jurusan" placeholder="Jurusan" value="{{$data == null ? null : $data->jurusan}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">IPK (tidak wajib bagi sma/sederajat)</label>
+                    <input type="text" class="form-control" name="ipk" placeholder="IPK" value="{{$data == null ? null : $data->ipk}}">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Pekerjaan Sekarang</label>
+                    <input type="text" class="form-control" name="pekerjaan" placeholder="pekerjaan" value="{{$data == null ? null : $data->pekerjaan}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">@ Akun Facebook</label>
+                    <input type="text" class="form-control" name="facebook" placeholder="facebook" value="{{$data == null ? null : $data->facebook}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">@ Akun Instagram</label>
+                    <input type="text" class="form-control" name="instagram" placeholder="instagram" value="{{$data == null ? null : $data->instagram}}" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">@ Akun Tiktok</label>
+                    <input type="text" class="form-control" name="tiktok" placeholder="tiktok" value="{{$data == null ? null : $data->tiktok}}" required>
                     </div>
                 </div>
                 </div>

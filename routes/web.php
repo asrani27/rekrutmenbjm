@@ -31,14 +31,14 @@ Route::get('/email/verification-notification', function () {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
+Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::get('/user/home', [UserController::class, 'home']);
     Route::post('/user/home/upload', [UserController::class, 'upload']);
     Route::get('/user/home/editprofile', [UserController::class, 'editProfile']);
     Route::post('/user/home/editprofile', [UserController::class, 'updateProfile']);
 });
 
-Route::middleware(['auth', 'role:superadmin'])->group(function () {
+Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
     Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);
