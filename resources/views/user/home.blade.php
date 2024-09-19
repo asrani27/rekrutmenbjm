@@ -163,7 +163,7 @@
           </tr>
           <tr>
             <td>FOTO</td>
-            <td class="text-center">JPG</td>
+            <td class="text-center"><a href="/storage/foto/{{$data->file_foto}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_foto == null)
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-red"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
@@ -177,7 +177,7 @@
           </tr>
           <tr>
             <td>KTP</td>
-            <td class="text-center">PDF</td>
+            <td class="text-center"><a href="/storage/pdf/{{$data->file_ktp}}" target="_blank">PDF</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
             
               @if ($data->file_ktp == null)
@@ -192,7 +192,7 @@
           </tr>
           <tr>
             <td>IJAZAH PENDIDIKAN TERAKHIR</td>
-            <td class="text-center">PDF</td>
+            <td class="text-center"><a href="/storage/pdf/{{$data->file_ijazah}}" target="_blank">PDF</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_ijazah == null)
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-red"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
@@ -206,7 +206,7 @@
           </tr>
           <tr>
             <td>SERTIFIKAT PRESTASI (JIKA ADA)</td>
-            <td class="text-center">PDF</td>
+            <td class="text-center"><a href="/storage/pdf/{{$data->file_sertifikat}}" target="_blank">PDF</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
             
               @if ($data->file_sertifikat == null)
