@@ -42,7 +42,7 @@ class SuperadminController extends Controller
 
             return response()->file($pathToFile);
         } catch (\Throwable $th) {
-            dd($th);
+            return response()->json(['no preview this file']);
         }
     }
     public function berkasPendaftar($id)
