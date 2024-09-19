@@ -52,11 +52,10 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
                     <label class="form-label">Jenis Kelamin</label>
-                    <select class="form-control" name="jkel" required>
+                    <select class="form-control" required name="jkel" >
                             <option value="">-pilih-</option>
                             <option value="L" {{($data == null ? null : $data->jkel) == 'L' ? 'selected':'' }}>Pria</option>
                             <option value="P" {{($data == null ? null : $data->jkel) == 'P' ? 'selected':'' }}>Wanita</option>
-                        </option>
                     </select>
                     </div>
                 </div>
@@ -77,8 +76,8 @@
                     <label class="form-label">Status Menikah</label>
                     <select class="form-control" required name="status_menikah">
                         <option value="">-pilih-</option>
-                        <option value="T">Belum Menikah</option>
-                        <option value="Y">Menikah</option>
+                        <option value="T" {{$data->status_menikah == 'T'? 'selected':''}}>Belum Menikah</option>
+                        <option value="Y" {{$data->status_menikah == 'Y'? 'selected':''}}>Menikah</option>
                     </select>
                     </div>
                 </div>

@@ -76,6 +76,7 @@ class UserController extends Controller
             $n->pendidikan_terakhir = $req->pendidikan_terakhir;
             $n->jurusan             = $req->jurusan;
             $n->ipk                 = $req->ipk;
+            $u->akademik            = $req->akademik;
             $n->pekerjaan           = $req->pekerjaan;
             $n->facebook            = $req->facebook;
             $n->instagram           = $req->instagram;
@@ -90,12 +91,30 @@ class UserController extends Controller
         } else {
             //update
             $u = $data;
-            $u->nama = $req->nama;
-            $u->nik = $req->nik;
-            $u->jkel = $req->jkel;
-            $u->tanggal_lahir = $req->tanggal_lahir;
-            $u->telp = $req->telp;
-            $u->alamat = $req->alamat;
+            $u->nik             = $req->nik;
+            $u->nokk            = $req->nokk;
+            $u->nama_lengkap    = $req->nama_lengkap;
+            $u->nama_panggilan  = $req->nama_panggilan;
+            $u->kewarganegaraan = $req->kewarganegaraan;
+            $u->jkel            = $req->jkel;
+            $u->tanggal_lahir   = $req->tanggal_lahir;
+            $u->tempat_lahir    = $req->tempat_lahir;
+            $u->status_menikah  = $req->status_menikah;
+            $u->telp            = $req->telp;
+            $u->alamat_ktp      = $req->alamat_ktp;
+            $u->kota_ktp        = $req->kota_ktp;
+            $u->kodepos_ktp     = $req->kodepos_ktp;
+            $u->alamat_saat_ini = $req->alamat_saat_ini;
+            $u->kota_saat_ini   = $req->kota_saat_ini;
+            $u->kodepos_saat_ini    = $req->kodepos_saat_ini;
+            $u->pendidikan_terakhir = $req->pendidikan_terakhir;
+            $u->akademik            = $req->akademik;
+            $u->jurusan             = $req->jurusan;
+            $u->ipk                 = $req->ipk;
+            $u->pekerjaan           = $req->pekerjaan;
+            $u->facebook            = $req->facebook;
+            $u->instagram           = $req->instagram;
+            $u->tiktok              = $req->tiktok;
             $u->save();
             return redirect('/user/home')->with('success', 'Profile Berhasil Di Update');
         }
