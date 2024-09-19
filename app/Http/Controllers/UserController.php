@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use App\Models\Upload;
 use App\Models\Profile;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Image;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Imagick\Driver;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class UserController extends Controller
@@ -29,25 +33,65 @@ class UserController extends Controller
 
     public function upload(Request $req)
     {
-        if ($req->jenis == "foto") {
-            $extension = $req->file->getClientOriginalExtension();
-            $filename = uniqid() . '.' . $extension;
+        if ($req->jenis === "foto") {
+            $req->validate([
+                'file' => 'required|image|mimes:jpg,jpeg|max:2048'
+            ]);
 
             $image = $req->file('file');
 
-            $realPath = public_path('storage') . '/foto/real';
-            $compressPath = public_path('storage');
+            $extension = $req->file->getClientOriginalExtension();
 
-            $img = Image::make($image->path());
+            $filename = uniqid(Str::random(6)) . '.' . $extension;
 
-            $img->resize(1000, 1000, function ($const) {
-                $const->aspectRatio();
-            })->save($compressPath . '/' . $filename);
+            $image->move(public_path('storage') . '/foto', $filename);
 
-            Storage::disk('public')->move($filename, '/foto/compress/' . $filename);
-            $image->move($realPath, $filename);
-            return back();
+            $imgManager = new ImageManager(new Driver());
+
+            $thumbImage = $imgManager->read(public_path('storage') . '/foto/' . $filename);
+
+            $thumbImage->scale(2000);
+
+            $thumbImage->save(public_path('storage') . '/real/' . $filename);
+
+            Storage::disk('public')->delete('foto/' . Auth::user()->profile->file_foto);
+
+            Auth::user()->profile->update([
+                'file_foto' => $filename
+            ]);
+
+            return back()->with('success', 'berhasil di upload');
         } else {
+
+            $req->validate([
+                'file' => 'required|mimes:pdf|max:2048'
+            ]);
+
+
+            $file = $req->file('file');
+            $filename = uniqid(Str::random(6)) . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('pdf', $filename);
+
+
+            if ($req->jenis === 'KTP') {
+                Storage::disk('public')->delete('pdf/' . Auth::user()->profile->file_ktp);
+                Auth::user()->profile->update([
+                    'file_ktp' => $filename
+                ]);
+            }
+            if ($req->jenis === 'IJAZAH') {
+                Storage::disk('public')->delete('pdf/' . Auth::user()->profile->file_ijazah);
+                Auth::user()->profile->update([
+                    'file_ijazah' => $filename
+                ]);
+            }
+            if ($req->jenis === 'SERTIFIKAT') {
+                Storage::disk('public')->delete('pdf/' . Auth::user()->profile->file_sertifikat);
+                Auth::user()->profile->update([
+                    'file_sertifikat' => $filename
+                ]);
+            }
+            return back()->with('success', 'berhasil di upload');
         }
     }
     public function updateProfile(Request $req)

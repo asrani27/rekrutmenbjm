@@ -76,8 +76,8 @@
                     <label class="form-label">Status Menikah</label>
                     <select class="form-control" required name="status_menikah">
                         <option value="">-pilih-</option>
-                        <option value="T" {{$data->status_menikah == 'T'? 'selected':''}}>Belum Menikah</option>
-                        <option value="Y" {{$data->status_menikah == 'Y'? 'selected':''}}>Menikah</option>
+                        <option value="T" {{$data->status_menikah == 'T' ? 'selected':''}}>Belum Menikah</option>
+                        <option value="Y" {{$data->status_menikah == 'Y' ? 'selected':''}}>Menikah</option>
                     </select>
                     </div>
                 </div>

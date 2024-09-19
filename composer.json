@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.2",
         "derekcodes/turnstile-laravel": "^1.1",
-        "intervention/image": "^2.7",
+        "intervention/image": "^3.8",
         "laravel/framework": "^11.9",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
