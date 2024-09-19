@@ -64,14 +64,14 @@ class LoginController extends Controller
     {
         try {
 
-            $user = Socialite::driver('google')->user();
-
+            $user = Socialite::driver('google')->stateless()->user();
+            //dd($user);
             $finduser = User::where('gauth_id', $user->id)->first();
 
             if ($finduser) {
 
                 Auth::login($finduser);
-
+                session()->regenerate();
                 return redirect('/user/home');
             } else {
                 $newProfile = new Profile();
