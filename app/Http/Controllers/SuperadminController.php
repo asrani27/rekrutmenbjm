@@ -26,10 +26,22 @@ class SuperadminController extends Controller
             $data = Profile::find($id);
 
             $oMerger = PDFMerger::init();
+            if ($data->file_ktp != null) {
+                $pathKTP = public_path('storage') . '/pdf/' . $data->file_ktp;
+            } else {
+                $pathKTP = null;
+            }
+            if ($data->file_ijazah != null) {
+                $pathIJAZAH = public_path('storage') . '/pdf/' . $data->file_ijazah;
+            } else {
+                $pathIJAZAH = null;
+            }
+            if ($data->file_sertifikat != null) {
+                $pathSERTIFIKAT = public_path('storage') . '/pdf/' . $data->file_sertifikat;
+            } else {
+                $pathSERTIFIKAT = null;
+            }
 
-            $pathKTP = public_path('storage') . '/pdf/' . $data->file_ktp;
-            $pathIJAZAH = public_path('storage') . '/pdf/' . $data->file_ijazah;
-            $pathSERTIFIKAT = public_path('storage') . '/pdf/' . $data->file_sertifikat;
             $oMerger->addPDF($pathKTP);
             $oMerger->addPDF($pathIJAZAH);
             $oMerger->addPDF($pathSERTIFIKAT, 'all');
@@ -42,7 +54,7 @@ class SuperadminController extends Controller
 
             return response()->file($pathToFile);
         } catch (\Throwable $th) {
-            return response()->json(['no preview this file']);
+            dd($th);
         }
     }
     public function berkasPendaftar($id)

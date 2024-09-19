@@ -86,7 +86,7 @@ class UserController extends Controller
 
             $file = $req->file('file');
             $filename = uniqid(Str::random(6)) . '.' . $file->getClientOriginalExtension();
-            $filePath = $file->storeAs('pdf', $filename);
+            $filePath = $file->storeAs('storage/pdf', $filename);
 
 
             if ($req->jenis === 'KTP') {

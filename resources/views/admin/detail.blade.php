@@ -157,12 +157,14 @@
 <div class="col-lg-10">
   <div class="card">
     <div class="card-body text-center">
-        @if ($data->file_ktp == null)
+        {{-- @if ($data->file_ktp == null)
             <div style="padding-top:10%; padding-bottom:10%"><strong>No Preview This File</strong></div>
-        @else
-        <a href="/admin/streampdf/{{$data->id}}" class='btn btn-outline-primary' target='_blank'>FULL PREVIEW</a><br/><br/>
-            <iframe style="width: 100%; height: 100%; overflow: hidden;" frameBorder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="/admin/streampdf/{{$data->id}}"></iframe>
-        @endif
+        @else --}}
+        <a href="/storage/pdf/{{$data->file_ktp}}" class='btn btn-outline-primary' target='_blank'>PREVIEW KTP</a><br/><br/>
+        <a href="/storage/pdf/{{$data->file_ijazah}}" class='btn btn-outline-primary' target='_blank'>PREVIEW IJAZAH</a><br/><br/>
+        <a href="/storage/pdf/{{$data->file_sertifikat}}" class='btn btn-outline-primary' target='_blank'>PREVIEW SERTIFIKAT</a><br/><br/>
+            {{-- <iframe style="width: 100%; height: 100%; overflow: hidden;" frameBorder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="/admin/streampdf/{{$data->id}}"></iframe> --}}
+        {{-- @endif --}}
     </div>
 
     {{-- <div class="table-responsive">
