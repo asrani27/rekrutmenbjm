@@ -197,7 +197,7 @@
             <th></th>
           </tr>
           <tr>
-            <td>FOTO</td>
+            <td>FOTO RESMI 4x6</td>
             <td class="text-center"><a href="/storage/foto/{{$data->file_foto}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_foto == null)
@@ -208,6 +208,20 @@
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="foto">upload</button>
+            </td>
+          </tr>
+          <tr>
+            <td>FOTO POSE</td>
+            <td class="text-center"><a href="/storage/pose/{{$data->file_pose}}" target="_blank">JPG</a></td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              @if ($data->file_pose == null)
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon text-red"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
+              @else  
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+              @endif
+            </td>
+            <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+              <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="pose">upload</button>
             </td>
           </tr>
           <tr>

@@ -49,7 +49,8 @@ class UserController extends Controller
 
     public function upload(Request $req)
     {
-        if ($req->jenis === "foto") {
+        if ($req->jenis === "foto" || $req->jenis === "pose") {
+
             $req->validate([
                 'file' => 'required|image|mimes:jpg,jpeg|max:2048'
             ]);
@@ -60,23 +61,46 @@ class UserController extends Controller
 
             $filename = uniqid(Str::random(6)) . '.' . $extension;
 
-            $image->move(public_path('storage') . '/foto', $filename);
+            if ($req->jenis === "foto") {
+                $image->move(public_path('storage') . '/foto', $filename);
 
-            $imgManager = new ImageManager(new Driver());
+                $imgManager = new ImageManager(new Driver());
 
-            $thumbImage = $imgManager->read(public_path('storage') . '/foto/' . $filename);
+                $thumbImage = $imgManager->read(public_path('storage') . '/foto/' . $filename);
 
-            $thumbImage->scale(2000);
+                $thumbImage->scale(2000);
 
-            $thumbImage->save(public_path('storage') . '/real/' . $filename);
+                $thumbImage->save(public_path('storage') . '/real/' . $filename);
 
-            Storage::disk('public')->delete('foto/' . Auth::user()->profile->file_foto);
+                Storage::disk('public')->delete('foto/' . Auth::user()->profile->file_foto);
 
-            Auth::user()->profile->update([
-                'file_foto' => $filename
-            ]);
+                Auth::user()->profile->update([
+                    'file_foto' => $filename
+                ]);
 
-            return back()->with('success', 'berhasil di upload');
+                return back()->with('success', 'berhasil di upload');
+            }
+
+            if ($req->jenis === "pose") {
+
+                $image->move(public_path('storage') . '/pose', $filename);
+
+                $imgManager = new ImageManager(new Driver());
+
+                $thumbImage = $imgManager->read(public_path('storage') . '/pose/' . $filename);
+
+                $thumbImage->scale(2000);
+
+                $thumbImage->save(public_path('storage') . '/real/' . $filename);
+
+                Storage::disk('public')->delete('pose/' . Auth::user()->profile->file_pose);
+
+                Auth::user()->profile->update([
+                    'file_pose' => $filename
+                ]);
+
+                return back()->with('success', 'berhasil di upload');
+            }
         } else {
 
             $req->validate([
