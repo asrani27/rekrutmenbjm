@@ -32,6 +32,7 @@ Route::get('/email/verification-notification', function () {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
+    Route::get('/user/home/kirimlamaran', [UserController::class, 'kirim']);
     Route::get('/user/home', [UserController::class, 'home']);
     Route::post('/user/home/upload', [UserController::class, 'upload']);
     Route::get('/user/home/editprofile', [UserController::class, 'editProfile']);
@@ -43,7 +44,11 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
     Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);
+    Route::post('/admin/validasi', [SuperadminController::class, 'validasi']);
     Route::get('/admin/streampdf/{id}', [SuperadminController::class, 'streamPDF']);
+    Route::get('/admin/ktp/{id}', [SuperadminController::class, 'streamKTP']);
+    Route::get('/admin/ijazah/{id}', [SuperadminController::class, 'streamIJAZAH']);
+    Route::get('/admin/sertifikat/{id}', [SuperadminController::class, 'streamSERTIFIKAT']);
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
     Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);

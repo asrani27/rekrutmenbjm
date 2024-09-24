@@ -25,6 +25,11 @@ class UserController extends Controller
         return view('user.home', compact('data'));
     }
 
+    public function kirim()
+    {
+        $data = Auth::user()->profile->update(['status_kirim' => 1]);
+        return back()->with('success', 'Data berhasil di kirim');
+    }
     public function essay()
     {
         $data = Auth::user()->profile;
@@ -36,6 +41,7 @@ class UserController extends Controller
 
         $data = Auth::user()->profile;
         $data->essay = $req->essay;
+        $data->ringkasan = $req->ringkasan;
         $data->bidang_id = $req->bidang_id;
         $data->save();
         return redirect('/user/home')->with('success', 'Essay berhasil di update');

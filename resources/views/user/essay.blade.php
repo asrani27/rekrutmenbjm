@@ -8,7 +8,7 @@
 @section('content')
   
 <div class="col-12">
-    <form class="card" method="POST" action="/user/home/essay" enctype="multipart/form-data">
+    <form class="card" id="myForm" onsubmit="return validateForm(event)" method="POST" action="/user/home/essay" enctype="multipart/form-data">
         @csrf
         <div class="card-header">
             <h3 class="card-title">
@@ -37,9 +37,17 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">ESSAY</label>
+                    <label class="form-label">RINGKASAN (maks 20 Kata)</label>
+                    <input type="text" class="form-control" name="ringkasan" id="inputText" oninput="checkWordLimit()" value="{{$data->ringkasan}}">
+                    <span id="wordCountMsg" style="color: red;"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="mb-3">
+                    <label class="form-label">ESSAY (Maks 300 kata)</label>
                     
-                    <textarea id="summernote" name="essay">{!!$data->essay!!}</textarea>
+                    <textarea id="summernote" name="essay" oninput="checkWordTextarea()">{!!$data->essay!!}</textarea>
+                    <span id="wordCountTxt" style="color: red;"></span>
                     </div>
                 </div>
                 
@@ -47,7 +55,7 @@
 
         </div>
         <div class="card-footer text-end">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary" id="submitButton">Update</button>
         </div>
     </form>
   </div>
@@ -63,16 +71,86 @@
             height: 400,
             lineHeights: [],
             callbacks: {
-                onKeydown: function (e) {
-                    // Mengecek jika tombol yang ditekan adalah Enter tanpa Shift
+                onKeydown: function(e) {
                     if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault(); // Mencegah tindakan Enter default
-                        // Menyisipkan <br> sebagai gantinya <p>
+                        e.preventDefault(); 
                         document.execCommand('insertLineBreak');
                     }
+                },
+                onKeyup: function(e) {
+                        checkWordText();
                 }
             }
         });
+
+        function checkWordText() {
+                const maxWords = 300;
+                const content = $('#summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, ""); // Menghapus HTML tags
+                const words = content.trim().split(/\s+/);
+                const wordCountMsg = document.getElementById('wordCountTxt');
+                const submitButton = document.getElementById('submitButton');
+                
+                if (words.length > maxWords) {
+                    wordCountMsg.textContent = `Maksimal ${maxWords} kata saja.`;
+
+                    document.getElementById("wordCountTxt").style.color = "red";
+                    submitButton.disabled = true; // Nonaktifkan tombol submit
+                } else {
+                    wordCountMsg.textContent = `Jumlah kata: ${words.length}`;
+                    document.getElementById("wordCountTxt").style.color = "green";
+                    submitButton.disabled = false; // Aktifkan kembali jika di bawah batas
+                }
+            }
     });
   </script>
+
+<script>
+    function checkWordTextarea() {
+        console.log('textarea')
+            const input = document.getElementById('summernote');
+            const maxWords = 300;
+            const words = input.value.trim().split(/\s+/);
+            const wordCountMsg = document.getElementById('wordCountTxt');
+            
+            if (words.length > maxWords) {
+                wordCountMsg.textContent = `Maksimal ${maxWords} kata saja.`;
+                document.getElementById("wordCountTxt").style.color = "red";
+            } else {
+                wordCountMsg.textContent = `Jumlah kata: ${words.length}`;
+                document.getElementById("wordCountTxt").style.color = "green";
+            }
+        }
+
+    function checkWordLimit() {
+            const input = document.getElementById('inputText');
+            const maxWords = 20;
+            const words = input.value.trim().split(/\s+/);
+            const wordCountMsg = document.getElementById('wordCountMsg');
+            
+            if (words.length > maxWords) {
+                wordCountMsg.textContent = `Maksimal ${maxWords} kata saja.`;
+                document.getElementById("wordCountMsg").style.color = "red";
+                submitButton.disabled = true; // Nonaktifkan tombol submit
+            } else {
+                wordCountMsg.textContent = `Jumlah kata: ${words.length}`;
+                document.getElementById("wordCountMsg").style.color = "green";
+                submitButton.disabled = false; // Aktifkan kembali jika di bawah batas
+            }
+        }
+
+    function validateForm(event) {
+        const input = document.getElementById('inputText').value.trim();
+        const words = input.split(/\s+/);
+        const maxWords = 20;
+
+        if (words.length > maxWords) {
+            document.getElementById('wordCountMsg').textContent = `Jumlah kata melebihi batas maksimal ${maxWords} kata!`;
+            event.preventDefault(); // Mencegah form dari pengiriman
+            return false;
+        }
+
+        document.getElementById('wordCountMsg').textContent = ''; // Bersihkan pesan kesalahan jika validasi sukses
+        return true; // Izinkan form dikirim jika jumlah kata sesuai
+    }
+</script>
 @endpush

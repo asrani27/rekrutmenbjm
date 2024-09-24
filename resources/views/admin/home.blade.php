@@ -49,6 +49,7 @@
               <th>No</th>
               <th>Nama</th>
               <th>Bidang Yang Di Pilih</th>
+              <th>Status</th>
               <th class="w-1"></th>
             </tr>
           </thead>
@@ -69,6 +70,22 @@
               <td>
                 <div>{{$item->bidang == null ? '' : $item->bidang->nama}}</div>
                 <div class="text-secondary"></div>
+              </td>
+              <td>
+                @if ($item->status_kirim == 0 || $item->status_kirim == null)
+                <span class="badge badge-outline text-yellow">DRAF</span>
+                @endif
+                @if ($item->status_kirim == 1)
+                <span class="badge badge-outline text-blue">DI KIRIM</span>
+                @endif
+                @if ($item->status_kirim == 2)
+                  
+                <span class="badge badge-outline text-green">TERVALIDASI</span>
+                @endif
+                @if ($item->status_kirim == 3)
+                  
+                <span class="badge badge-outline text-red">TIDAK VALID</span>
+                @endif
               </td>
               <td>
                 <a href="/admin/detailpendaftar/{{$item->id}}" class="btn btn-outline-primary">Detail</a>

@@ -29,6 +29,11 @@
         
     <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url('/storage/foto/{{$data->file_foto}}')"></div>
     @endif
+    <br/>
+
+    @if ($data->status_kirim == 0 || $data->status_kirim == null)
+    <button class='btn btn-primary btn-block w-100 kirimlamaran'> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> KIRIM</button>
+    @endif
   </div>
   <div class="col-lg-10">
     <div class="card">
@@ -37,14 +42,41 @@
           Profile
         </h3>
         <div class="card-actions">
+
+          @if ($data->status_kirim == 0 || $data->status_kirim == null)
           <a href="/user/home/editprofile">
             Edit Profile<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path><path d="M16 5l3 3"></path></svg>
           </a>
+          @endif
         </div>
       </div>
       <div class="card-body">
         <dl class="row">
+          @if ($data->status_kirim == 0 || $data->status_kirim == null)
+
+          <dt class="col-3">STATUS</dt>
+          <dd class="col-9">: <span class="badge badge-outline text-yellow">DRAF</span></dd>
+          @endif
+          @if ($data->status_kirim == 1)
+
+          <dt class="col-3">STATUS</dt>
+          <dd class="col-9">: <span class="badge badge-outline text-blue">DI KIRIM</span></dd>
+          @endif
+          @if ($data->status_kirim == 2)
+              
+          <dt class="col-3">STATUS</dt>
+          <dd class="col-9">: <span class="badge badge-outline text-green">TERVALIDASI</span></dd>
+          @endif
+          @if ($data->status_kirim == 3)
+              
+          <dt class="col-3">STATUS</dt>
+          <dd class="col-9">: <span class="badge badge-outline text-red">TIDAK VALID</span></dd>
+          <dt class="col-3">KETERANGAN</dt>
+          <dd class="col-9">: <span class="badge badge-outline text-black">{{$data == null ? null : $data->keterangan}}</span></dd>
+          <hr>
+          @endif
+
           <dt class="col-3">NO KK</dt>
           <dd class="col-9">: {{$data == null ? null : $data->nokk}}</dd>
 
@@ -134,16 +166,22 @@
           Bidang
         </h3>
         <div class="card-actions">
+
+          @if ($data->status_kirim == 0 || $data->status_kirim == null)
           <a href="/user/home/essay">
             Pilih Bidang Dan Isi Essay<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path><path d="M16 5l3 3"></path></svg>
           </a>
+          @endif
         </div>
       </div>
       <div class="card-body">
         <dl class="row">
           <dt class="col-3">BIDANG</dt>
           <dd class="col-9">: {{$data->bidang == null ? '': $data->bidang->nama}}</dd>
+
+          <dt class="col-3">RINGKASAN</dt>
+          <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
 
           <dt class="col-3">ESSAY</dt>
             @if ($data->essay ==null)
@@ -207,7 +245,10 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+
+              @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="foto">upload</button>
+              @endif
             </td>
           </tr>
           <tr>
@@ -221,7 +262,10 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+
+              @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="pose">upload</button>
+              @endif
             </td>
           </tr>
           <tr>
@@ -236,7 +280,10 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+
+              @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="KTP">upload</a>
+              @endif
             </td>
           </tr>
           <tr>
@@ -250,7 +297,10 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+
+              @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="IJAZAH">upload</a>
+              @endif
             </td>
           </tr>
           <tr>
@@ -265,7 +315,10 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
+
+              @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="SERTIFIKAT">upload</a>
+              @endif
             </td>
           </tr>
           
@@ -322,6 +375,34 @@
       </div>
     </div>
   </div>
+
+
+  <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-status bg-danger"></div>
+        <div class="modal-body text-center py-4">
+          <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.24 3.957l-8.422 14.06a1.989 1.989 0 0 0 1.7 2.983h16.845a1.989 1.989 0 0 0 1.7 -2.983l-8.423 -14.06a1.989 1.989 0 0 0 -3.4 0z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+          <h3>Apakah Anda Sudah Yakin Semua Data Terisi ?</h3>
+          <div class="text-secondary">Setelah data terkirim, anda tidak bisa mengubah data anda kembali</div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-100">
+            <div class="row">
+              <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+                  Cancel
+                </a></div>
+              <div class="col"><a href="/user/home/kirimlamaran" class="btn btn-danger w-100">
+                  Ya, Kirim Sekarang!
+                </a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @push('js')
@@ -354,6 +435,10 @@
   $(document).on('click', '.uploadpdf', function() {
     $('#jenis_pdf').val($(this).data('jenis'));
     $("#modal-upload-pdf").modal('show');
+  });
+
+  $(document).on('click', '.kirimlamaran', function() {
+    $("#modal-danger").modal('show');
   });
 </script>
 @endpush

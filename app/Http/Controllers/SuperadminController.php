@@ -6,6 +6,9 @@ use App\Models\Bidang;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
+
+use Barryvdh\DomPDF\PDF as PDF;
+use Illuminate\Support\Facades\App;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
 class SuperadminController extends Controller
@@ -19,6 +22,64 @@ class SuperadminController extends Controller
     {
         $data = Profile::find($id);
         return view('admin.detail', compact('data'));
+    }
+    public function validasi(Request $req)
+    {
+
+        $data = Profile::find($req->profile_id)->update([
+            'status_kirim' => $req->status_kirim,
+            'keterangan' => $req->keterangan
+        ]);
+        return back()->with('success', 'telah di validasi');
+    }
+    public function streamKTP($id)
+    {
+        Profile::find($id)->update(['preview_ktp' => 1]);
+        $data = Profile::find($id);
+        $path = storage_path('app/public/pdf/' . $data->file_ktp);
+
+        if (!file_exists($path)) {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML('<h1>File Tidak Ada</h1>');
+            return $pdf->stream();
+        }
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $data->file_ktp . '"',
+        ]);
+    }
+    public function streamIJAZAH($id)
+    {
+        Profile::find($id)->update(['preview_ijazah' => 1]);
+        $data = Profile::find($id);
+        $path = storage_path('app/public/pdf/' . $data->file_ijazah);
+
+        if (!file_exists($path)) {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML('<h1>File Tidak Ada</h1>');
+            return $pdf->stream();
+        }
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $data->file_ijazah . '"',
+        ]);
+    }
+    public function streamSERTIFIKAT($id)
+    {
+        Profile::find($id)->update(['preview_sertifikat' => 1]);
+        $data = Profile::find($id);
+        $path = storage_path('app/public/pdf/' . $data->file_sertifikat);
+
+        if (!file_exists($path)) {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML('<h1>File Tidak Ada</h1>');
+            return $pdf->stream();
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $data->file_sertifikat . '"',
+        ]);
     }
     public function streamPDF($id)
     {
