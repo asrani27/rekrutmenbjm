@@ -211,7 +211,7 @@
             </td>
           </tr>
           <tr>
-            <td>FOTO POSE</td>
+            <td>FOTO BEBAS <br/><small>yang akan di tampilkan di instagram</small></td>
             <td class="text-center"><a href="/storage/pose/{{$data->file_pose}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_pose == null)
