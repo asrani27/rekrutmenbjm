@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,7 @@ class RegisterController extends Controller
             'username' => 'required|unique:users',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required'
-        ]); 
+        ]);
 
         $user = new User();
         $user->name = $req->nama;
@@ -42,6 +43,11 @@ class RegisterController extends Controller
         $user->password = Hash::make($req->password);
         $user->save();
 
+        $profile = new Profile();
+        $profile->email = $req->email;
+        $profile->save();
+
+        $user->update(['profile_id' => $profile->id]);
         event(new Registered($user));
 
         Auth::login($user);
