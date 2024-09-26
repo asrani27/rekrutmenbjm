@@ -15,7 +15,6 @@
       </div>
       <!-- Page title actions -->
       <div class="col-auto ms-auto d-print-none">
-      
         
       </div>
     </div>
@@ -45,20 +44,20 @@
   <div class="col-md">
     <div class="form-label">Bidang</div>
     <select class="form-control" name="bidang_id">
-      <option value="">-semua-</option>
+      <option value="" {{old('bidang_id') == null ? 'selected':''}}>-semua-</option>
       @foreach ($bidang as $item)
-        <option value="{{$item->id}}">{{$item->nama}}</option>
+        <option value="{{$item->id}}" {{old('bidang_id') == $item->id ? 'selected':''}}>{{$item->nama}}</option>
       @endforeach
     </select>
   </div>
   <div class="col-md">
     <div class="form-label">Status</div>
     <select class="form-control" name="status">
-    <option value="">-semua-</option>
-    <option value="1">DRAF</option>
-    <option value="2">DIKIRIM</option>
-    <option value="3">TERVALIDASI</option>
-    <option value="4">TIDAK VALID</option>
+    <option value="" {{old('status') === null ? 'selected':''}}>-semua-</option>
+    <option value="0" {{old('status') === '0' ? 'selected':''}}>DRAF</option>
+    <option value="1" {{old('status') === '1' ? 'selected':''}}>DIKIRIM</option>
+    <option value="2" {{old('status') === '2' ? 'selected':''}}>TERVALIDASI</option>
+    <option value="3" {{old('status') === '3' ? 'selected':''}}>TIDAK VALID</option>
     </select>
   </div>
   <div class="col-md">

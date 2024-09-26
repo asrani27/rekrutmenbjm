@@ -25,16 +25,14 @@ class SuperadminController extends Controller
         $bidang_id = request()->get('bidang_id');
         $status = request()->get('status');
         $bidang = Bidang::get();
+
         if ($bidang_id === null && $status === null) {
             $data = Profile::orderBy('id', 'ASC')->get();
-        }
-        if ($bidang_id != null && $status === null) {
+        } elseif ($bidang_id != null && $status === null) {
             $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->get();
-        }
-        if ($bidang_id === null && $status != null) {
-            $data = Profile::orderBy('id', 'ASC')->where('status_kirim', $status)->get();
-        }
-        if ($bidang_id != null && $status != null) {
+        } elseif ($bidang_id === null && $status != null) {
+            $data = Profile::where('status_kirim', $status)->orderBy('id', 'ASC')->get();
+        } elseif ($bidang_id != null && $status != null) {
             $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->where('status_kirim', $status)->get();
         }
 
