@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="row">
-
   @if(session()->has('success'))
   <div class="col-lg-12">
     <div class="alert alert-important alert-success alert-dismissible" role="alert">

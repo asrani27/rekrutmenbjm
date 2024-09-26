@@ -58,6 +58,7 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/bidang/delete/{id}', [SuperadminController::class, 'delete_bidang']);
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/home', [SuperadminController::class, 'home']);
+    Route::get('/admin/home/filter', [SuperadminController::class, 'filter']);
     Route::post('/admin/pendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
 });
 Route::get('oauth/google', [LoginController::class, 'redirectToProvider'])->name('oauth.google');

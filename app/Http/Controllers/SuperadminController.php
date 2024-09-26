@@ -15,8 +15,31 @@ class SuperadminController extends Controller
 {
     public function home()
     {
+        $bidang = Bidang::get();
         $data = Profile::orderBy('id', 'ASC')->get();
-        return view('admin.home', compact('data'));
+        return view('admin.home', compact('data', 'bidang'));
+    }
+
+    public function filter()
+    {
+        $bidang_id = request()->get('bidang_id');
+        $status = request()->get('status');
+        $bidang = Bidang::get();
+        if ($bidang_id === null && $status === null) {
+            $data = Profile::orderBy('id', 'ASC')->get();
+        }
+        if ($bidang_id != null && $status === null) {
+            $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->get();
+        }
+        if ($bidang_id === null && $status != null) {
+            $data = Profile::orderBy('id', 'ASC')->where('status_kirim', $status)->get();
+        }
+        if ($bidang_id != null && $status != null) {
+            $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->where('status_kirim', $status)->get();
+        }
+
+        request()->flash();
+        return view('admin.home', compact('data', 'bidang'));
     }
     public function detailPendaftar($id)
     {

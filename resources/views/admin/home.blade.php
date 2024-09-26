@@ -39,7 +39,34 @@
   </div>
   @endif
 </div>
-
+<form method="get" action="/admin/home/filter">
+@csrf
+<div class="row g-3">
+  <div class="col-md">
+    <div class="form-label">Bidang</div>
+    <select class="form-control" name="bidang_id">
+      <option value="">-semua-</option>
+      @foreach ($bidang as $item)
+        <option value="{{$item->id}}">{{$item->nama}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div class="col-md">
+    <div class="form-label">Status</div>
+    <select class="form-control" name="status">
+    <option value="">-semua-</option>
+    <option value="1">DRAF</option>
+    <option value="2">DIKIRIM</option>
+    <option value="3">TERVALIDASI</option>
+    <option value="4">TIDAK VALID</option>
+    </select>
+  </div>
+  <div class="col-md">
+    <div class="form-label"><br/></div>
+    <button type="submit" class='btn btn-md btn-primary'><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> FILTER</button>
+  </div>
+</div>
+</form>
   <div class="col-12">
     <div class="card">
       <div class="table-responsive">
