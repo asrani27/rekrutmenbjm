@@ -35,19 +35,19 @@ class RegisterController extends Controller
             'password_confirmation' => 'required'
         ]);
 
+        $profile = new Profile();
+        $profile->email = $req->email;
+        $profile->save();
+
         $user = new User();
         $user->name = $req->nama;
         $user->username = $req->username;
         $user->email = $req->email;
         $user->roles = 'user';
         $user->password = Hash::make($req->password);
+        $user->profile_id = $profile->id;
         $user->save();
 
-        $profile = new Profile();
-        $profile->email = $req->email;
-        $profile->save();
-
-        $user->update(['profile_id' => $profile->id]);
         event(new Registered($user));
 
         Auth::login($user);
