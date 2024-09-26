@@ -90,7 +90,7 @@
           <dd class="col-9">:  {{$data == null ? null : $data->status_menikah}}</dd>
 
           <dt class="col-3">E-MAIL</dt>
-          <dd class="col-9">:  {{Auth::user()->email}}</dd>
+          <dd class="col-9">:  {{$data == null ? null : $data->email}}</dd>
 
           <dt class="col-3">TELP</dt>
           <dd class="col-9">:  {{$data == null ? null : $data->telp}}</dd>
