@@ -17,7 +17,8 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email');
+    $data = Auth::user()->profile;
+    return view('auth.verify-email', compact('data'));
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
