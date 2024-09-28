@@ -56,7 +56,7 @@ class UserController extends Controller
 
     public function upload(Request $req)
     {
-        if ($req->jenis === "foto" || $req->jenis === "pose") {
+        if ($req->jenis === "foto" || $req->jenis === "pose" || $req->jenis === "KTP") {
 
             $req->validate([
                 'file' => 'required|image|mimes:jpg,jpeg|max:2048'
@@ -104,6 +104,25 @@ class UserController extends Controller
 
                 Auth::user()->profile->update([
                     'file_pose' => $filename
+                ]);
+
+                return back()->with('success', 'berhasil di upload');
+            }
+            if ($req->jenis === "KTP") {
+                $image->move(public_path('storage') . '/ktp', $filename);
+
+                $imgManager = new ImageManager(new Driver());
+
+                $thumbImage = $imgManager->read(public_path('storage') . '/ktp/' . $filename);
+
+                $thumbImage->scale(2000);
+
+                $thumbImage->save(public_path('storage') . '/real/' . $filename);
+
+                Storage::disk('public')->delete('ktp/' . Auth::user()->profile->file_ktp);
+
+                Auth::user()->profile->update([
+                    'file_ktp' => $filename
                 ]);
 
                 return back()->with('success', 'berhasil di upload');

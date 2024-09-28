@@ -266,7 +266,7 @@
           </tr>
           <tr>
             <td>KTP</td>
-            <td class="text-center"><a href="/storage/pdf/{{$data->file_ktp}}" target="_blank">PDF</a></td>
+            <td class="text-center"><a href="/storage/ktp/{{$data->file_ktp}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
             
               @if ($data->file_ktp == null)
@@ -278,7 +278,7 @@
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
 
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
-              <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="KTP">upload</a>
+              <a href=# class="btn btn-md btn-outline-primary uploadfile" data-jenis="KTP">upload</a>
               @endif
             </td>
           </tr>
