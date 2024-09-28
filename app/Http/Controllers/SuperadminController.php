@@ -25,21 +25,23 @@ class SuperadminController extends Controller
     public function filter()
     {
         $bidang_id = request()->get('bidang_id');
+        $sektor_id = request()->get('sektor_id');
         $status = request()->get('status');
+        $sektor = Sektor::get();
         $bidang = Bidang::get();
 
-        if ($bidang_id === null && $status === null) {
+        if ($sektor_id === null && $status === null) {
             $data = Profile::orderBy('id', 'ASC')->get();
-        } elseif ($bidang_id != null && $status === null) {
-            $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->get();
-        } elseif ($bidang_id === null && $status != null) {
+        } elseif ($sektor_id != null && $status === null) {
+            $data = Profile::orderBy('id', 'ASC')->where('sektor_id', $sektor_id)->get();
+        } elseif ($sektor_id === null && $status != null) {
             $data = Profile::where('status_kirim', $status)->orderBy('id', 'ASC')->get();
-        } elseif ($bidang_id != null && $status != null) {
-            $data = Profile::orderBy('id', 'ASC')->where('bidang_id', $bidang_id)->where('status_kirim', $status)->get();
+        } elseif ($sektor_id != null && $status != null) {
+            $data = Profile::orderBy('id', 'ASC')->where('sektor_id', $sektor_id)->where('status_kirim', $status)->get();
         }
 
         request()->flash();
-        return view('admin.home', compact('data', 'bidang'));
+        return view('admin.home', compact('data', 'bidang', 'sektor'));
     }
     public function detailPendaftar($id)
     {
