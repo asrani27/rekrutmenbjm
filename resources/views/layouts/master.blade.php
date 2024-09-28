@@ -11,7 +11,7 @@
     <link href="/nf/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet"/>
     <link href="/nf/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet"/>
     <link href="/nf/dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet"/>
-    
+    <link rel="icon" href="/icon/favicon.png" type="image/x-icon">
     @stack('css')
     
     <style>
