@@ -50,13 +50,21 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/ktp/{id}', [SuperadminController::class, 'streamKTP']);
     Route::get('/admin/ijazah/{id}', [SuperadminController::class, 'streamIJAZAH']);
     Route::get('/admin/sertifikat/{id}', [SuperadminController::class, 'streamSERTIFIKAT']);
+
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
     Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);
     Route::get('/admin/bidang/edit/{id}', [SuperadminController::class, 'edit_bidang']);
     Route::post('/admin/bidang/edit/{id}', [SuperadminController::class, 'update_bidang']);
     Route::get('/admin/bidang/delete/{id}', [SuperadminController::class, 'delete_bidang']);
-    Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
+
+    Route::get('/admin/sektor', [SuperadminController::class, 'sektor']);
+    Route::get('/admin/sektor/add', [SuperadminController::class, 'add_sektor']);
+    Route::post('/admin/sektor/add', [SuperadminController::class, 'store_sektor']);
+    Route::get('/admin/sektor/edit/{id}', [SuperadminController::class, 'edit_sektor']);
+    Route::post('/admin/sektor/edit/{id}', [SuperadminController::class, 'update_sektor']);
+    Route::get('/admin/sektor/delete/{id}', [SuperadminController::class, 'delete_sektor']);
+
     Route::get('/admin/home', [SuperadminController::class, 'home']);
     Route::get('/admin/home/filter', [SuperadminController::class, 'filter']);
     Route::post('/admin/pendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);

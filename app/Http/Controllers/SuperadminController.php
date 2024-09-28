@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bidang;
 use App\Models\Profile;
+use App\Models\Sektor;
 use Illuminate\Http\Request;
 
 
@@ -172,6 +173,37 @@ class SuperadminController extends Controller
     public function delete_bidang($id)
     {
         $data = Bidang::find($id)->delete();
+        return back();
+    }
+
+
+    public function sektor()
+    {
+        $data = Sektor::get();
+        return view('admin.sektor.index', compact('data'));
+    }
+    public function add_sektor()
+    {
+        return view('admin.sektor.add');
+    }
+    public function store_sektor(Request $req)
+    {
+        Sektor::create($req->all());
+        return redirect('/admin/sektor');
+    }
+    public function edit_sektor($id)
+    {
+        $data = Sektor::find($id);
+        return view('admin.sektor.edit', compact('data'));
+    }
+    public function update_sektor(Request $req, $id)
+    {
+        Sektor::find($id)->update($req->all());
+        return redirect('/admin/sektor');
+    }
+    public function delete_sektor($id)
+    {
+        $data = Sektor::find($id)->delete();
         return back();
     }
 }
