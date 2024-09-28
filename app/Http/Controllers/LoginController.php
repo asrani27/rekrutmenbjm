@@ -43,11 +43,14 @@ class LoginController extends Controller
 
                 if (Auth::attempt([$field => $login, 'password' => request()->password], true)) {
                     // if (Auth::attempt($credential, $remember)) {
-
-                    if (Auth::user()->roles === 'user') {
-                        return redirect('/user/home');
+                    if (auth()->user()->hasVerifiedEmail()) {
+                        return redirect('/email/verify');
                     } else {
-                        return redirect('/admin/home');
+                        if (Auth::user()->roles === 'user') {
+                            return redirect('/user/home');
+                        } else {
+                            return redirect('/admin/home');
+                        }
                     }
                 } else {
                     $req->flash();
