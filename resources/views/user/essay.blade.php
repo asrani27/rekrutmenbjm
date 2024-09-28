@@ -12,7 +12,7 @@
         @csrf
         <div class="card-header">
             <h3 class="card-title">
-              Pilih Bidang Dan Essay
+              Pilih Sektor Dan Essay
             </h3>
             <div class="card-actions">
               <a href="/user/home">
@@ -26,11 +26,11 @@
                 <div class="row row-cards">
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">BIDANG</label>
-                    <select class="form-control" name="bidang_id" required>
+                    <label class="form-label">SEKTOR</label>
+                    <select class="form-control" name="sektor_id" required>
                         <option value="">-pilih-</option>
-                        @foreach ($bidang as $item)
-                            <option value="{{$item->id}}" {{$data->bidang_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+                        @foreach ($sektor as $item)
+                            <option value="{{$item->id}}" {{$data->sektor_id == $item->id ? 'selected':''}}>{{$item->nama}}</option>
                         @endforeach
                     </select>
                     </div>

@@ -43,7 +43,7 @@ class UserController extends Controller
         $data = Auth::user()->profile;
         $data->essay = $req->essay;
         $data->ringkasan = $req->ringkasan;
-        $data->bidang_id = $req->bidang_id;
+        $data->sektor_id = $req->sektor_id;
         $data->save();
         return redirect('/user/home')->with('success', 'Essay berhasil di update');
     }
