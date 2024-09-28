@@ -19,6 +19,17 @@
 
         <div class="card-body">
                 <div class="row row-cards">
+
+                  <div class="col-sm-6 col-md-6">
+                    <div class="mb-3">
+                    <label class="form-label">Sektor</label>
+                    <select class="form-control" name="sektor_id" required>
+                      @foreach ($sektor as $item)
+                          <option value="{{$item->id}}">{{$item->nama}}</option>
+                      @endforeach
+                    </select>
+                    </div>
+                </div>
                     <div class="col-sm-6 col-md-6">
                         <div class="mb-3">
                         <label class="form-label">Nama Bidang</label>

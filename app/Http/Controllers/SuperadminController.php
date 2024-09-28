@@ -153,7 +153,8 @@ class SuperadminController extends Controller
     }
     public function add_bidang()
     {
-        return view('admin.bidang.add');
+        $sektor = Sektor::get();
+        return view('admin.bidang.add', compact('sektor'));
     }
     public function store_bidang(Request $req)
     {
@@ -163,7 +164,8 @@ class SuperadminController extends Controller
     public function edit_bidang($id)
     {
         $data = Bidang::find($id);
-        return view('admin.bidang.edit', compact('data'));
+        $sektor = Sektor::get();
+        return view('admin.bidang.edit', compact('data', 'sektor'));
     }
     public function update_bidang(Request $req, $id)
     {
@@ -188,7 +190,9 @@ class SuperadminController extends Controller
     }
     public function store_sektor(Request $req)
     {
-        Sektor::create($req->all());
+        $param = $req->all();
+        $param['nama'] = strtoupper($req->nama);
+        Sektor::create($param);
         return redirect('/admin/sektor');
     }
     public function edit_sektor($id)
@@ -198,7 +202,9 @@ class SuperadminController extends Controller
     }
     public function update_sektor(Request $req, $id)
     {
-        Sektor::find($id)->update($req->all());
+        $param = $req->all();
+        $param['nama'] = strtoupper($req->nama);
+        Sektor::find($id)->update($param);
         return redirect('/admin/sektor');
     }
     public function delete_sektor($id)

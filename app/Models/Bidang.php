@@ -12,4 +12,9 @@ class Bidang extends Model
     use HasUuids;
     protected $table = 'bidang';
     protected $guarded = ['id'];
+
+    public function sektor()
+    {
+        return $this->belongsTo(Sektor::class, 'sektor_id');
+    }
 }
