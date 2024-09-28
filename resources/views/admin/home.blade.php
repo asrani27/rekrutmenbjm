@@ -42,11 +42,11 @@
 @csrf
 <div class="row g-3">
   <div class="col-md">
-    <div class="form-label">Bidang</div>
-    <select class="form-control" name="bidang_id">
-      <option value="" {{old('bidang_id') == null ? 'selected':''}}>-semua-</option>
-      @foreach ($bidang as $item)
-        <option value="{{$item->id}}" {{old('bidang_id') == $item->id ? 'selected':''}}>{{$item->nama}}</option>
+    <div class="form-label">Sektor</div>
+    <select class="form-control" name="sektor_id">
+      <option value="" {{old('sektor_id') == null ? 'selected':''}}>-semua-</option>
+      @foreach ($sektor as $item)
+        <option value="{{$item->id}}" {{old('sektor_id') == $item->id ? 'selected':''}}>{{$item->nama}}</option>
       @endforeach
     </select>
   </div>
@@ -74,7 +74,7 @@
             <tr>
               <th>No</th>
               <th>Nama</th>
-              <th>Bidang Yang Di Pilih</th>
+              <th>Sektor Yang Di Pilih</th>
               <th>Status</th>
               <th class="w-1"></th>
             </tr>
@@ -94,7 +94,7 @@
                 </div>
               </td>
               <td>
-                <div>{{$item->bidang == null ? '' : $item->bidang->nama}}</div>
+                <div>{{$item->sektor == null ? '' : $item->sektor->nama}}</div>
                 <div class="text-secondary"></div>
               </td>
               <td>

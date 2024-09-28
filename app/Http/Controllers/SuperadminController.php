@@ -18,7 +18,8 @@ class SuperadminController extends Controller
     {
         $bidang = Bidang::get();
         $data = Profile::orderBy('id', 'ASC')->get();
-        return view('admin.home', compact('data', 'bidang'));
+        $sektor = Sektor::get();
+        return view('admin.home', compact('data', 'bidang', 'sektor'));
     }
 
     public function filter()
