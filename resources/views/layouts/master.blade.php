@@ -52,7 +52,7 @@
                   <div class="mt-1 small">
                     <strong>
                       @if (Auth::user()->roles === 'user')   
-                        Calon Staf
+                       Kandidat
                       @endif
                     </strong>
                   </div>

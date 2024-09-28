@@ -17,4 +17,8 @@ class Profile extends Model
     {
         return $this->belongsTo(Bidang::class, 'bidang_id');
     }
+    public function sektor()
+    {
+        return $this->belongsTo(Sektor::class, 'sektor_id');
+    }
 }

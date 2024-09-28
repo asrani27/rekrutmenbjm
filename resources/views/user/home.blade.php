@@ -159,13 +159,13 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
-          Bidang
+          Sektor
         </h3>
         <div class="card-actions">
 
           @if ($data->status_kirim == 0 || $data->status_kirim == null)
           <a href="/user/home/essay">
-            Pilih Bidang Dan Isi Essay<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
+            Pilih Sektor Dan Isi Essay<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path><path d="M16 5l3 3"></path></svg>
           </a>
           @endif
@@ -173,8 +173,8 @@
       </div>
       <div class="card-body">
         <dl class="row">
-          <dt class="col-3">BIDANG</dt>
-          <dd class="col-9">: {{$data->bidang == null ? '': $data->bidang->nama}}</dd>
+          <dt class="col-3">SEKTOR</dt>
+          <dd class="col-9">: {{$data->sektor == null ? '': $data->sektor->nama}}</dd>
 
           <dt class="col-3">RINGKASAN</dt>
           <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
