@@ -34,7 +34,7 @@
       <div class="col-12 col-lg-6 col-xl-4 border-top-wide border-primary d-flex flex-column justify-content-center">
         <div class="container container-tight my-5 px-lg-5">
           <div class="text-center mb-4">
-            <a href="#" class="navbar-brand navbar-brand-autodark"><img src="/icon/logobjm.png" alt=""></a>
+            <a href="https://banjarmasinmemanggil.com" class="navbar-brand navbar-brand-autodark"><img src="/icon/logobjm.png" alt=""></a>
           </div>
           <h2 class="h3 text-center mb-3">
             Access the panel using your username and password.
