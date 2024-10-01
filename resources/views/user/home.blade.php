@@ -176,10 +176,10 @@
           <dt class="col-3">SEKTOR</dt>
           <dd class="col-9">: {{$data->sektor == null ? '': $data->sektor->nama}}</dd>
 
-          <dt class="col-3">RINGKASAN</dt>
+          <dt class="col-3">RINGKASAN ESAI</dt>
           <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
 
-          <dt class="col-3">ESSAY</dt>
+          <dt class="col-3">ESAI</dt>
             @if ($data->essay ==null)
                 
             <dd class="col-9">:</dd>

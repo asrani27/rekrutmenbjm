@@ -12,7 +12,7 @@
         @csrf
         <div class="card-header">
             <h3 class="card-title">
-              Pilih Sektor Dan Essay
+              Pilih Sektor Dan Esai
             </h3>
             <div class="card-actions">
               <a href="/user/home">
@@ -37,14 +37,14 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">RINGKASAN (maks 30 Kata)</label>
+                    <label class="form-label">RINGKASAN ESAI (maks 30 Kata)</label>
                     <input type="text" class="form-control" name="ringkasan" id="inputText" oninput="checkWordLimit()" value="{{$data->ringkasan}}">
                     <span id="wordCountMsg" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">ESSAY (Maks 1500 kata)</label>
+                    <label class="form-label">ESAI (Maks 1500 kata)</label>
                     
                     <textarea id="summernote" name="essay" oninput="checkWordTextarea()">{!!$data->essay!!}</textarea>
                     <span id="wordCountTxt" style="color: red;"></span>
