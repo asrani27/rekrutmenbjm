@@ -231,7 +231,7 @@
             <th></th>
           </tr>
           <tr>
-            <td>FOTO RESMI 4x6</td>
+            <td>FOTO FORMAL</td>
             <td class="text-center"><a href="/storage/foto/{{$data->file_foto}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_foto == null)
@@ -248,7 +248,7 @@
             </td>
           </tr>
           <tr>
-            <td>FOTO BEBAS <br/><small>yang akan di tampilkan di instagram</small></td>
+            <td>FOTO CASUAL <br/><small>yang akan di tampilkan di instagram</small></td>
             <td class="text-center"><a href="/storage/pose/{{$data->file_pose}}" target="_blank">JPG</a></td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
               @if ($data->file_pose == null)
