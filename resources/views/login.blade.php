@@ -36,9 +36,9 @@
           <div class="text-center mb-4">
             <a href="https://banjarmasinmemanggil.com" class="navbar-brand navbar-brand-autodark"><img src="/icon/logobjm.png" alt=""></a>
           </div>
-          <h2 class="h3 text-center mb-3">
-            Selamat Datang Di Pendaftaran Staf Khusus
-          </h2>
+          <h1 class="h1 text-center mb-3">
+            Selamat Datang <br/>Di <strong style="color: #ff5101;font-family: 'arial', sans-serif;"> Pendaftaran Staf Khusus</strong>
+          </h1>
           @if(session()->has('error'))
           <div class="col-lg-12">
             <div class="alert alert-important alert-danger alert-dismissible" role="alert">

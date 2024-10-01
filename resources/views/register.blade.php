@@ -38,9 +38,9 @@
           <div class="text-center mb-4">
             <a href="https://banjarmasinmemanggil.com" class="navbar-brand navbar-brand-autodark"><img src="/icon/logobjm.png"  alt=""></a>
           </div>
-          <h2 class="h3 text-center mb-3">
-           Daftar Akun Banjarmasin Memanggil
-          </h2>
+          <h1 class="h1 text-center mb-3">
+           Daftar Akun <br/>Banjarmasin Memanggil
+          </h1>
           <form action="/register" method="post" autocomplete="off" novalidate class="form-register">
             @csrf
             <div class="mb-3">
