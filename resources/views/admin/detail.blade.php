@@ -159,8 +159,8 @@
       </div>
       <div class="card-body">
         <dl class="row">
-          <dt class="col-3">BIDANG</dt>
-          <dd class="col-9">: {{$data->bidang == null ? '': $data->bidang->nama}}</dd>
+          <dt class="col-3">SEKTOR</dt>
+          <dd class="col-9">: {{$data->sektor == null ? '': $data->sektor->nama}}</dd>
 
           <dt class="col-3">RINGKASAN</dt>
           <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
