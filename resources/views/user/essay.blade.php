@@ -37,14 +37,14 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">RINGKASAN (maks 20 Kata)</label>
+                    <label class="form-label">RINGKASAN (maks 30 Kata)</label>
                     <input type="text" class="form-control" name="ringkasan" id="inputText" oninput="checkWordLimit()" value="{{$data->ringkasan}}">
                     <span id="wordCountMsg" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
-                    <label class="form-label">ESSAY (Maks 300 kata)</label>
+                    <label class="form-label">ESSAY (Maks 1500 kata)</label>
                     
                     <textarea id="summernote" name="essay" oninput="checkWordTextarea()">{!!$data->essay!!}</textarea>
                     <span id="wordCountTxt" style="color: red;"></span>
@@ -108,7 +108,7 @@
     function checkWordTextarea() {
         console.log('textarea')
             const input = document.getElementById('summernote');
-            const maxWords = 300;
+            const maxWords = 1500;
             const words = input.value.trim().split(/\s+/);
             const wordCountMsg = document.getElementById('wordCountTxt');
             
@@ -123,7 +123,7 @@
 
     function checkWordLimit() {
             const input = document.getElementById('inputText');
-            const maxWords = 20;
+            const maxWords = 30;
             const words = input.value.trim().split(/\s+/);
             const wordCountMsg = document.getElementById('wordCountMsg');
             
