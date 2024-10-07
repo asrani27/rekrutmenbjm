@@ -84,7 +84,7 @@
         });
 
         function checkWordText() {
-                const maxWords = 300;
+                const maxWords = 1500;
                 const content = $('#summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, ""); // Menghapus HTML tags
                 const words = content.trim().split(/\s+/);
                 const wordCountMsg = document.getElementById('wordCountTxt');
@@ -141,7 +141,7 @@
     function validateForm(event) {
         const input = document.getElementById('inputText').value.trim();
         const words = input.split(/\s+/);
-        const maxWords = 20;
+        const maxWords = 30;
 
         if (words.length > maxWords) {
             document.getElementById('wordCountMsg').textContent = `Jumlah kata melebihi batas maksimal ${maxWords} kata!`;
