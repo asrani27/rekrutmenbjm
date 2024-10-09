@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
     Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);
+    Route::get('/admin/deletependaftar/{id}', [SuperadminController::class, 'deletePendaftar']);
     Route::post('/admin/validasi', [SuperadminController::class, 'validasi']);
     Route::get('/admin/streampdf/{id}', [SuperadminController::class, 'streamPDF']);
     Route::get('/admin/ktp/{id}', [SuperadminController::class, 'streamKTP']);

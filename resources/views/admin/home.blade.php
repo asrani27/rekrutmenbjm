@@ -1,6 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
+  @if(session()->has('success'))
+  <div class="col-lg-12">
+    <div class="alert alert-important alert-success alert-dismissible" role="alert">
+      <div class="d-flex">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+        </div>
+        <div>
+          {{ session()->get('success') }}
+        </div>
+      </div>
+      <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+    </div>
+  </div>
+  @endif
+  
 <div class="page-header d-print-none">
   <div class="container-xl">
     <div class="row g-2 align-items-center">
@@ -19,24 +35,6 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-
-  @if(session()->has('success'))
-  <div class="col-lg-12">
-    <div class="alert alert-important alert-success alert-dismissible" role="alert">
-      <div class="d-flex">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
-        </div>
-        <div>
-          {{ session()->get('success') }}
-        </div>
-      </div>
-      <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-    </div>
-  </div>
-  @endif
 </div>
 <form method="get" action="/admin/home/filter">
 @csrf
@@ -76,7 +74,7 @@
               <th>Nama</th>
               <th>Sektor Yang Di Pilih</th>
               <th>Status</th>
-              <th class="w-1"></th>
+              <th class="w-9"></th>
             </tr>
           </thead>
           <tbody>
@@ -114,7 +112,15 @@
                 @endif
               </td>
               <td>
-                <a href="/admin/detailpendaftar/{{$item->id}}" class="btn btn-outline-primary">Detail</a>
+                
+                <div class="row g-2 align-items-center">
+                  <div class="col-6">
+                    <a href="/admin/detailpendaftar/{{$item->id}}" class="btn btn-outline-primary w-100">Detail</a>
+                  </div>
+                  <div class="col-6">
+                    <a href="/admin/deletependaftar/{{$item->id}}" class="btn btn-outline-danger w-100" onclick="return confirm('Yakin ingin Dihapus?');">Delete</a>
+                  </div>
+                </div>
               </td>
             </tr>
             @endforeach

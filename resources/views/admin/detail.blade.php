@@ -81,7 +81,7 @@
           <dd class="col-9">:  {{$data == null ? null : $data->jkel}}</dd>
 
           <dt class="col-3">TANGGAL LAHIR</dt>
-          <dd class="col-9">:  {{$data == null ? null : $data->tanggal_lahir}}</dd>
+          <dd class="col-9">:  {{$data == null ? null : \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y')}} | {{$data == null ? null : \Carbon\Carbon::parse($data->tanggal_lahir)->age}} Tahun</dd>
           
           <dt class="col-3">TEMPAT LAHIR</dt>
           <dd class="col-9">:  {{$data == null ? null : $data->tempat_lahir}}</dd>

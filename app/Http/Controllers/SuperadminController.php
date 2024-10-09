@@ -48,6 +48,12 @@ class SuperadminController extends Controller
         $data = Profile::find($id);
         return view('admin.detail', compact('data'));
     }
+
+    public function deletePendaftar($id)
+    {
+        $data = Profile::find($id)->delete();
+        return back()->with('success', 'berhasil di hapus');
+    }
     public function validasi(Request $req)
     {
 
