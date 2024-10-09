@@ -258,7 +258,9 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
-
+              @if ($data->file_foto != null)
+              <a href="/storage/foto/{{$data->file_foto}}" class="btn btn-md btn-outline-primary" target="_blank">Preview</a>
+              @endif
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="foto">upload</button>
               @endif
@@ -275,7 +277,9 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
-
+              @if ($data->file_pose != null)
+              <a href="/storage/pose/{{$data->file_pose}}" class="btn btn-md btn-outline-primary" target="_blank">Preview</a>
+              @endif
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <button type="button" class="btn btn-md btn-outline-primary uploadfile" data-id="123" data-jenis="pose">upload</button>
               @endif
@@ -293,7 +297,9 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
-
+              @if ($data->file_ktp != null)
+              <a href="/storage/ktp/{{$data->file_ktp}}" class="btn btn-md btn-outline-primary" target="_blank">Preview</a>
+              @endif
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadfile" data-jenis="KTP">upload</a>
               @endif
@@ -310,7 +316,9 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
-
+              @if ($data->file_ijazah != null)
+              <a href="/storage/pdf/{{$data->file_ijazah}}" class="btn btn-md btn-outline-primary" target="_blank">Preview</a>
+              @endif
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="IJAZAH">upload</a>
               @endif
@@ -328,7 +336,9 @@
               @endif
             </td>
             <td class="text-center"><!-- Download SVG icon from http://tabler-icons.io/i/check -->
-
+              @if ($data->file_sertifikat != null)
+              <a href="/storage/pdf/{{$data->file_sertifikat}}" class="btn btn-md btn-outline-primary" target="_blank">Preview</a>
+              @endif
               @if ($data->status_kirim == 0 || $data->status_kirim == null)
               <a href=# class="btn btn-md btn-outline-primary uploadpdf" data-jenis="SERTIFIKAT">upload</a>
               @endif
