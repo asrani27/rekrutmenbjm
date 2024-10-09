@@ -38,7 +38,7 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="mb-3">
                     <label class="form-label">RINGKASAN ESAI (maks 30 Kata)</label>
-                    <input type="text" class="form-control" name="ringkasan" id="inputText" oninput="checkWordLimit()" value="{{$data->ringkasan}}">
+                    <input type="text" class="form-control" name="ringkasan" id="inputText" oninput="checkWordLimit()" value="{{$data->ringkasan}}" required>
                     <span id="wordCountMsg" style="color: red;"></span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="mb-3">
                     <label class="form-label">ESAI (Maks 1500 kata)</label>
                     
-                    <textarea id="summernote" name="essay" oninput="checkWordTextarea()">{!!$data->essay!!}</textarea>
+                    <textarea id="summernote" name="essay" oninput="checkWordTextarea()" required>{!!$data->essay!!}</textarea>
                     <span id="wordCountTxt" style="color: red;"></span>
                     </div>
                 </div>

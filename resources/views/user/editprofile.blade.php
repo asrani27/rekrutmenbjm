@@ -165,20 +165,20 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
-                    <label class="form-label">@ Akun Facebook</label>
-                    <input type="text" class="form-control" name="facebook" placeholder="facebook" value="{{$data == null ? null : $data->facebook}}" required>
+                    <label class="form-label">@ Akun Facebook (optional)</label>
+                    <input type="text" class="form-control" name="facebook" placeholder="facebook" value="{{$data == null ? null : $data->facebook}}">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
-                    <label class="form-label">@ Akun Instagram</label>
-                    <input type="text" class="form-control" name="instagram" placeholder="instagram" value="{{$data == null ? null : $data->instagram}}" required>
+                    <label class="form-label">@ Akun Instagram (optional)</label>
+                    <input type="text" class="form-control" name="instagram" placeholder="instagram" value="{{$data == null ? null : $data->instagram}}">
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="mb-3">
-                    <label class="form-label">@ Akun Tiktok</label>
-                    <input type="text" class="form-control" name="tiktok" placeholder="tiktok" value="{{$data == null ? null : $data->tiktok}}" required>
+                    <label class="form-label">@ Akun Tiktok (optional)</label>
+                    <input type="text" class="form-control" name="tiktok" placeholder="tiktok" value="{{$data == null ? null : $data->tiktok}}">
                     </div>
                 </div>
                 </div>
