@@ -28,8 +28,14 @@ class UserController extends Controller
 
     public function kirim()
     {
-        $data = Auth::user()->profile->update(['status_kirim' => 1]);
-        return back()->with('success', 'Data berhasil di kirim');
+        if (Auth::user()->profile->sektor_id == null) {
+            return back()->with('error', 'Harap Isi sektor dan essay');
+        } elseif (Auth::user()->profile->nik == null) {
+            return back()->with('error', 'Harap Isi profile');
+        } else {
+            $data = Auth::user()->profile->update(['status_kirim' => 1]);
+            return back()->with('success', 'Data berhasil di kirim');
+        }
     }
     public function essay()
     {
