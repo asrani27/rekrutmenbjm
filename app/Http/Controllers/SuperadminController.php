@@ -51,7 +51,9 @@ class SuperadminController extends Controller
 
     public function deletePendaftar($id)
     {
-        $data = Profile::find($id)->delete();
+        $data = Profile::find($id);
+        User::where('profile_id', $data->id)->first()->delete();
+        $data->delete();
         return back()->with('success', 'berhasil di hapus');
     }
     public function validasi(Request $req)
