@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Bidang;
-use App\Models\Profile;
 use App\Models\Sektor;
+use App\Models\Profile;
+
+
 use Illuminate\Http\Request;
-
-
 use Barryvdh\DomPDF\PDF as PDF;
 use Illuminate\Support\Facades\App;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
