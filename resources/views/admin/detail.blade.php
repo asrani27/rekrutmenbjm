@@ -188,6 +188,8 @@
 
       @if ($data->status_kirim == 0 || $data->status_kirim == null)
       @else
+      <a href="/storage/foto/{{$data->file_foto}}" class='btn btn-outline-primary w-50' target='_blank'>FOTO PROFIL</a><br/><br/>
+      <a href="/storage/foto/{{$data->file_pose}}" class='btn btn-outline-primary w-50' target='_blank'>FOTO CASUAL</a><br/><br/>
       <a href="/storage/ktp/{{$data->file_ktp}}" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW KTP</a><br/><br/>
       <a href="/admin/ijazah/{{$data->id}}" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW IJAZAH</a><br/><br/>
       <a href="/admin/sertifikat/{{$data->id}}" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW SERTIFIKAT</a><br/><br/>
