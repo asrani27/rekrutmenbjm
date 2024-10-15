@@ -32,6 +32,14 @@ class UserController extends Controller
             return back()->with('error', 'Harap Isi sektor dan essay');
         } elseif (Auth::user()->profile->nik == null) {
             return back()->with('error', 'Harap Isi profile');
+        } elseif (Auth::user()->profile->file_foto == null) {
+            return back()->with('error', 'Harap upload Foto');
+        } elseif (Auth::user()->profile->file_ktp == null) {
+            return back()->with('error', 'Harap upload KTP');
+        } elseif (Auth::user()->profile->file_ijazah == null) {
+            return back()->with('error', 'Harap upload Ijazah');
+        } elseif (Auth::user()->profile->file_pose == null) {
+            return back()->with('error', 'Harap upload Foto Pose');
         } else {
             $data = Auth::user()->profile->update(['status_kirim' => 1]);
             return back()->with('success', 'Data berhasil di kirim');
