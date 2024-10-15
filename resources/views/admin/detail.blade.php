@@ -190,8 +190,16 @@
       @else
       <a href="/storage/foto/{{$data->file_foto}}" class='btn btn-outline-primary w-50' target='_blank'>FOTO PROFIL</a><br/><br/>
       <a href="/storage/pose/{{$data->file_pose}}" class='btn btn-outline-primary w-50' target='_blank'>FOTO CASUAL</a><br/><br/>
-      <a href="/admin/ktp/{{$data->id}}" id="reloadButton" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW KTP</a><br/><br/>
-      <a href="/admin/ijazah/{{$data->id}}" id="reloadButton" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW IJAZAH</a><br/><br/>
+      <a href="/admin/ktp/{{$data->id}}" id="reloadButton1" class='btn btn-outline-primary w-50' target='_blank'>
+        @if ($data->preview_ktp == 1)
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
+        @endif
+        PREVIEW KTP</a><br/><br/>
+      <a href="/admin/ijazah/{{$data->id}}" id="reloadButton2" class='btn btn-outline-primary w-50' target='_blank'>
+        @if ($data->preview_ijazah == 1)
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
+        @endif
+        PREVIEW IJAZAH</a><br/><br/>
       <a href="/admin/sertifikat/{{$data->id}}" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW SERTIFIKAT</a><br/><br/>
       @endif
         
@@ -265,10 +273,15 @@
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-  document.getElementById("reloadButton").addEventListener("click", function() {
+  document.getElementById("reloadButton1").addEventListener("click", function() {
       setTimeout(function() {
           location.reload();
-      }, 2000);
+      }, 1000);
+  });
+  document.getElementById("reloadButton2").addEventListener("click", function() {
+      setTimeout(function() {
+          location.reload();
+      }, 1000);
   });
 </script>
 <script>
