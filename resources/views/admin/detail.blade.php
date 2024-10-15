@@ -197,6 +197,7 @@
         
         
 
+       <small> preview KTP dan Ijazah untuk enable Validasi</small>
         @if ($data->status_kirim == 1)
           @if ($data->preview_ktp == null || $data->preview_ijazah == null)
               
