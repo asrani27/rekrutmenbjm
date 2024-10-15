@@ -70,17 +70,17 @@ class SuperadminController extends Controller
     {
         Profile::find($id)->update(['preview_ktp' => 1]);
         $data = Profile::find($id);
-        $path = storage_path('app/public/pdf/' . $data->file_ktp);
 
+        // Tentukan path ke file gambar
+        $path = storage_path('app/public/ktp/' . $data->file_ktp);
+
+        // Periksa apakah file ada
         if (!file_exists($path)) {
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadHTML('<h1>File Tidak Ada</h1>');
-            return $pdf->stream();
+            abort(404); // Mengembalikan 404 jika file tidak ditemukan
         }
-        return response()->file($path, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="' . $data->file_ktp . '"',
-        ]);
+
+        // Kembalikan respons gambar
+        return response()->file($path);
     }
     public function streamIJAZAH($id)
     {
