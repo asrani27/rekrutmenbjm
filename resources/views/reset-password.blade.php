@@ -42,25 +42,9 @@
             <a href="https://banjarmasinmemanggil.com" class="navbar-brand navbar-brand-autodark"><img src="/icon/logobjm.png" alt=""></a>
           </div>
           <h1 class="h1 text-center mb-3">
-            Selamat Datang <br/>Di <strong style="color: #ff5101;font-family: 'arial', sans-serif;"> Pendaftaran Staf Khusus</strong>
+            <strong style="color: #ff5101;font-family: 'arial', sans-serif;"> Masukkan Password Baru</strong>
           </h1>
-
-          @if(session()->has('status'))
-          <div class="col-lg-12">
-            <div class="alert alert-important alert-success alert-dismissible" role="alert">
-              <div class="d-flex">
-                <div>
-                  <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
-                </div>
-                <div>
-                  {{ session()->get('status') }}
-                </div>
-              </div>
-              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-            </div>
-          </div>
-          @endif
+          <br/>
           @if(session()->has('error'))
           <div class="col-lg-12">
             <div class="alert alert-important alert-danger alert-dismissible" role="alert">
@@ -77,36 +61,38 @@
             </div>
           </div>
           @endif
-          <form action="/login" method="post" autocomplete="off">
+          <form action="/reset-password" method="post" autocomplete="off">
             @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
             <div class="mb-3">
               <label class="form-label">Email</label>
-              <input type="username" class="form-control" name="username" placeholder="your@email.com" autocomplete="new-password" required>
+              <input type="email" class="form-control @error ('email') is-invalid @enderror" name="email" value="{{old('email')}}" placeholder="emailanda@gmail.com" autocomplete="off">
+              @error ('email')
+                <div class="invalid-feedback">{{$message}}</div>
+              @enderror
             </div>
-            <div class="mb-2">
-              <label class="form-label">
-                Password
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control" id="password" name="password"  placeholder="Your password"  autocomplete="new-password" required>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+                <input type="password" class="form-control @error ('password') is-invalid @enderror" name="password" placeholder="Password anda"  autocomplete="new-password" required>
+                @error ('password')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Ulangi Password</label>
+              
+              <input type="password" class="form-control @error ('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="Ulangi password"  autocomplete="off" required >
+              @error ('password_confirmation')
+              <div class="invalid-feedback">{{$message}}</div>
+              @enderror
                 
-                <span class="input-group-text" onclick="togglePassword()">Show</span>
-                {{-- <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Show password" onclick="togglePassword()" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
-                  </a>
-                </span> --}}
-              </div>
             </div>
-            
+
             <div class="mb-0 text-center">
                 <div id="cf-turnstile"></div>
             </div>
             <div class="form-footer" style="margin-top:1rem">
-              <button type="submit" class="btn btn-primary w-100">Sign In</button>
-            </div>
-            <div class="form-footer" style="margin-top:1rem">
-              <a href="/lupa_password" class="btn btn-warning w-100">Lupa Password ?</a>
+              <button type="submit" class="btn btn-primary w-100">Reset Password</button>
             </div>
           </form>
           <div class="text-center text-secondary mt-3">

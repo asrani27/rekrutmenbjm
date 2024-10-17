@@ -12,6 +12,10 @@ use App\Http\Controllers\SuperadminController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [RegisterController::class, 'index']);
+Route::get('/lupa_password', [LoginController::class, 'lupa_password']);
+Route::post('/lupa_password', [LoginController::class, 'sendLink']);
+Route::get('/reset-password/{token}', [LoginController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [LoginController::class, 'resetPassword'])->name('password.update');
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);

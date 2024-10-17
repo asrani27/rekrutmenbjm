@@ -44,7 +44,7 @@
           <h1 class="h1 text-center mb-3">
             Selamat Datang <br/>Di <strong style="color: #ff5101;font-family: 'arial', sans-serif;"> Pendaftaran Staf Khusus</strong>
           </h1>
-
+          <br/>
           @if(session()->has('status'))
           <div class="col-lg-12">
             <div class="alert alert-important alert-success alert-dismissible" role="alert">
@@ -55,6 +55,22 @@
                 </div>
                 <div>
                   {{ session()->get('status') }}
+                </div>
+              </div>
+              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            </div>
+          </div>
+          @endif
+          @if(session()->has('email'))
+          <div class="col-lg-12">
+            <div class="alert alert-important alert-danger alert-dismissible" role="alert">
+              <div class="d-flex">
+                <div>
+                  <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                  <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                </div>
+                <div>
+                  {{ session()->get('email') }}
                 </div>
               </div>
               <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
@@ -77,36 +93,18 @@
             </div>
           </div>
           @endif
-          <form action="/login" method="post" autocomplete="off">
+          <form action="/lupa_password" method="post" autocomplete="off">
             @csrf
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="username" class="form-control" name="username" placeholder="your@email.com" autocomplete="new-password" required>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">
-                Password
-              </label>
-              <div class="input-group input-group-flat">
-                <input type="password" class="form-control" id="password" name="password"  placeholder="Your password"  autocomplete="new-password" required>
-                
-                <span class="input-group-text" onclick="togglePassword()">Show</span>
-                {{-- <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Show password" onclick="togglePassword()" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
-                  </a>
-                </span> --}}
-              </div>
+              <label class="form-label">Masukkan Email</label>
+              <input type="email" class="form-control" name="email" placeholder="your@email.com" autocomplete="off" required value="{{old('email')}}">
             </div>
             
             <div class="mb-0 text-center">
                 <div id="cf-turnstile"></div>
             </div>
             <div class="form-footer" style="margin-top:1rem">
-              <button type="submit" class="btn btn-primary w-100">Sign In</button>
-            </div>
-            <div class="form-footer" style="margin-top:1rem">
-              <a href="/lupa_password" class="btn btn-warning w-100">Lupa Password ?</a>
+              <button type="submit" class="btn btn-primary w-100 send-mail">Send</button>
             </div>
           </form>
           <div class="text-center text-secondary mt-3">
@@ -145,19 +143,13 @@
         });
     };
     </script>
+    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
     <script>
-      function togglePassword() {
-          var passwordField = document.getElementById("password");
-          var toggleBtn = document.querySelector(".input-group-text");
-
-          if (passwordField.type === "password") {
-              passwordField.type = "text";
-              toggleBtn.textContent = "Hide";
-          } else {
-              passwordField.type = "password";
-              toggleBtn.textContent = "Show";
-          }
-      }
-  </script>
+        $(document).ready(function() {
+          $(".send-mail").click(function() {
+            $(".send-mail").addClass("disabled");
+          });
+        });
+    </script>
   </body>
 </html>
