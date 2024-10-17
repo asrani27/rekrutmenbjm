@@ -66,7 +66,7 @@
       </div>
       <div class="card-body">
         <dl class="row">
-          @if ($data->status_kirim == 0 || $data->status_kirim == null)
+          {{-- @if ($data->status_kirim == 0 || $data->status_kirim == null)
 
           <dt class="col-3">STATUS</dt>
           <dd class="col-9">: <span class="badge badge-outline text-yellow">DRAF</span></dd>
@@ -88,7 +88,7 @@
           <dt class="col-3">KETERANGAN</dt>
           <dd class="col-9">: <span class="badge badge-outline text-black">{{$data == null ? null : $data->keterangan}}</span></dd>
           <hr>
-          @endif
+          @endif --}}
 
           <dt class="col-3">NO KK</dt>
           <dd class="col-9">: {{$data == null ? null : $data->nokk}}</dd>
