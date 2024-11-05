@@ -142,44 +142,86 @@
   </div>
 
 
-  <div class="col-lg-2">
-  </div>
-  <div class="col-lg-10">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">
-          Bidang Dan Essay
-        </h3>
-        <div class="card-actions">
-          {{-- <a href="/user/home/essay">
-            Pilih Bidang Dan Isi Essay<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path><path d="M16 5l3 3"></path></svg>
-          </a> --}}
-        </div>
-      </div>
-      <div class="card-body">
-        <dl class="row">
-          <dt class="col-3">SEKTOR</dt>
-          <dd class="col-9">: {{$data->sektor == null ? '': $data->sektor->nama}}</dd>
-
-          <dt class="col-3">RINGKASAN</dt>
-          <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
-
-          <dt class="col-3">ESSAY</dt>
-            @if ($data->essay ==null)
-                
-            <dd class="col-9">:</dd>
-            @else
-            <dd class="col-9"> {!!$data->essay!!}</dd>
-            @endif
-          
-
-          
-        </dl>
+<div class="col-lg-2">
+</div>
+<div class="col-lg-10">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">
+        Bidang Dan Essay
+      </h3>
+      <div class="card-actions">
+        {{-- <a href="/user/home/essay">
+          Pilih Bidang Dan Isi Essay<!-- Download SVG icon from http://tabler-icons.io/i/edit -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path><path d="M16 5l3 3"></path></svg>
+        </a> --}}
       </div>
     </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-3">SEKTOR</dt>
+        <dd class="col-9">: {{$data->sektor == null ? '': $data->sektor->nama}}</dd>
+
+        <dt class="col-3">RINGKASAN</dt>
+        <dd class="col-9">: {{$data->ringkasan == null ? '': $data->ringkasan}}</dd>
+
+        <dt class="col-3">ESSAY</dt>
+          @if ($data->essay ==null)
+              
+          <dd class="col-9">:</dd>
+          @else
+          <dd class="col-9"> {!!$data->essay!!}</dd>
+          @endif
+      </dl>
+    </div>
   </div>
+</div>
   
+
+<div class="col-lg-2">
+</div>
+<div class="col-lg-10">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">
+        Upload Foto Instagram
+      </h3>
+      <div class="card-actions">
+        
+      </div>
+    </div>
+    <div class="card-body">
+      <form id="uploadForm" action="/admin/detailpendaftar/{{$data->id}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col">
+            <input type="file" id="files" class="form-control" name="files[]" multiple>
+            </div>
+            <div class="col">
+            <button type="submit" class="btn btn-primary">Upload</button>
+
+            </div>
+            <span id="error-message" style="color: red;"></span>
+        </div>
+      </form>
+
+      @if ($data->fotoinstagram != null)
+      <br/>
+      <table>
+        <tr>
+          @foreach ($data->fotoinstagram as $fi)
+          <td>
+              <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
+              Download | <a href="/deletefotoig/{{$fi->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
+          </td>
+          @endforeach
+        </tr>
+      </table>
+      @endif
+    </div>
+  </div>
+</div>
+
 <div class="col-lg-2">
 </div>
 <div class="col-lg-10">
@@ -290,6 +332,26 @@
 $(document).on('click', '.validasi', function() {
     $('#profile_id').val($(this).data('id'));
     $("#modal-validasi").modal('show');
+  });
+</script>
+<script>
+  document.getElementById('uploadForm').addEventListener('submit', function(event) {
+      const allowedExtensions = ['jpg', 'jpeg', 'png'];
+      const files = document.getElementById('files').files;
+      const errorMessage = document.getElementById('error-message');
+      
+      errorMessage.textContent = ''; // Reset pesan error
+      
+      for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const fileExtension = file.name.split('.').pop().toLowerCase();
+
+          if (!allowedExtensions.includes(fileExtension)) {
+              errorMessage.textContent = "Only JPG, JPEG, and PNG files are allowed.";
+              event.preventDefault(); // Mencegah submit form jika file tidak valid
+              return;
+          }
+      }
   });
 </script>
 @endpush

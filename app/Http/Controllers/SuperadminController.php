@@ -6,15 +6,47 @@ use App\Models\User;
 use App\Models\Bidang;
 use App\Models\Sektor;
 use App\Models\Profile;
+use App\Models\Instagram;
 
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\PDF as PDF;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
 
 class SuperadminController extends Controller
 {
+    public function uploadFoto(Request $request, $id)
+    {
+        // Validasi file
+        $request->validate([
+            'files.*' => 'required|file|mimes:jpg,png,pdf|max:4096', // sesuaikan validasi sesuai kebutuhan
+        ]);
+
+        $uploadedFiles = $request->file('files');
+
+
+        if ($uploadedFiles) {
+            foreach ($uploadedFiles as $file) {
+                $filename = uniqid(Str::random(6)) . '.' . $file->getClientOriginalExtension();
+
+                // Simpan file ke storage
+                $path = $file->store('instagram');
+
+                $file->move(public_path('storage') . '/instagram', $filename);
+
+                $n = new Instagram();
+                $n->profile_id = $id;
+                $n->filename = $filename;
+                $n->save();
+                return back();
+            }
+        }
+
+        return back()->with('success', 'Files uploaded successfully!');
+    }
     public function home()
     {
         $bidang = Bidang::get();
@@ -23,6 +55,14 @@ class SuperadminController extends Controller
         return view('admin.home', compact('data', 'bidang', 'sektor'));
     }
 
+    public function deleteFoto($id)
+    {
+        $ig = Instagram::find($id);
+        $path = storage_path('app/public/instagram' . $ig->filename);
+        Storage::delete($path);
+        return back();
+        // return view('admin.home', compact('data', 'bidang', 'sektor'));
+    }
     public function filter()
     {
         $bidang_id = request()->get('bidang_id');

@@ -21,4 +21,8 @@ class Profile extends Model
     {
         return $this->belongsTo(Sektor::class, 'sektor_id');
     }
+    public function fotoinstagram()
+    {
+        return $this->hasMany(Instagram::class, 'profile_id');
+    }
 }

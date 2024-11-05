@@ -48,6 +48,8 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
+    Route::post('/admin/detailpendaftar/{id}', [SuperadminController::class, 'uploadFoto']);
+    Route::get('/deletefotoig/{id}', [SuperadminController::class, 'deleteFoto']);
     Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);
     Route::get('/admin/deletependaftar/{id}', [SuperadminController::class, 'deletePendaftar']);
     Route::post('/admin/validasi', [SuperadminController::class, 'validasi']);
