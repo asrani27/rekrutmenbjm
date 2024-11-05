@@ -6,9 +6,10 @@ use App\Models\User;
 use App\Models\Bidang;
 use App\Models\Sektor;
 use App\Models\Profile;
+use App\Models\Setting;
+
+
 use App\Models\Instagram;
-
-
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\PDF as PDF;
@@ -218,6 +219,14 @@ class SuperadminController extends Controller
         return view('admin.setting.index', compact('data'));
     }
 
+
+    public function updateSetting(Request $req)
+    {
+        $data = Setting::first()->update([
+            'is_aktif' => $req->is_aktif
+        ]);
+        return back()->with('success', 'berhasil');
+    }
     public function bidang()
     {
         $data = Bidang::get();
