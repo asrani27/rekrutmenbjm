@@ -212,7 +212,7 @@
           @foreach ($data->fotoinstagram as $fi)
           <td>
               <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
-              Download | <a href="/deletefotoig/{{$fi->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
+              <a href="/downloadfotoig/{{$fi->id}}"> Download</a> | <a href="/deletefotoig/{{$fi->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
           </td>
           @endforeach
         </tr>

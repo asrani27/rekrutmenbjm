@@ -30,18 +30,17 @@ class SuperadminController extends Controller
 
         if ($uploadedFiles) {
             foreach ($uploadedFiles as $file) {
-                $filename = uniqid(Str::random(6)) . '.' . $file->getClientOriginalExtension();
+                $originalName = $file->getClientOriginalName();
 
-                // Simpan file ke storage
-                $path = $file->store('instagram');
+                $filename = uniqid(Str::random(6)) . '.' . $file->getClientOriginalExtension();
 
                 $file->move(public_path('storage') . '/instagram', $filename);
 
                 $n = new Instagram();
                 $n->profile_id = $id;
                 $n->filename = $filename;
+                $n->realname = $originalName;
                 $n->save();
-                return back();
             }
         }
 
@@ -58,10 +57,25 @@ class SuperadminController extends Controller
     public function deleteFoto($id)
     {
         $ig = Instagram::find($id);
-        $path = storage_path('app/public/instagram' . $ig->filename);
-        Storage::delete($path);
+        $path = 'instagram/' . $ig->filename;
+
+        Storage::disk('public')->delete($path);
+        $ig->delete();
         return back();
-        // return view('admin.home', compact('data', 'bidang', 'sektor'));
+    }
+    public function downloadFoto($id)
+    {
+        $ig = Instagram::find($id);
+        $filePath = 'instagram/' . $ig->filename;
+
+        // Cek apakah file ada
+        if (Storage::disk('public')->exists($filePath)) {
+            // Mengunduh file
+            $realname = $ig->realname;
+            return Storage::disk('public')->download($filePath, $realname);
+        } else {
+            return response()->json(['error' => 'File tidak ditemukan.'], 404);
+        }
     }
     public function filter()
     {
