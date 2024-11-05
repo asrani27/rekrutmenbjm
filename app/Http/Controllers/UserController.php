@@ -7,6 +7,7 @@ use App\Models\Bidang;
 use App\Models\Sektor;
 use App\Models\Upload;
 use App\Models\Profile;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,11 @@ class UserController extends Controller
 {
     public function home()
     {
+        $date = Carbon::now();
         $data = Auth::user()->profile;
-        return view('user.home', compact('data'));
+        $isAvailable = $date->greaterThan(Carbon::tomorrow()->setTime(12, 0));
+
+        return view('user.home', compact('data','isAvailable'));
     }
 
     public function kirim()
