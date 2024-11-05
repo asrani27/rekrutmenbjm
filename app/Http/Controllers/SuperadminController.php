@@ -212,6 +212,12 @@ class SuperadminController extends Controller
         return view('admin.detail', compact('data'));
     }
 
+    public function setting()
+    {
+        $data = Setting::first();
+        return view('admin.setting.index', compact('data'));
+    }
+
     public function bidang()
     {
         $data = Bidang::get();

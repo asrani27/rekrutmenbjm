@@ -59,6 +59,8 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/ijazah/{id}', [SuperadminController::class, 'streamIJAZAH']);
     Route::get('/admin/sertifikat/{id}', [SuperadminController::class, 'streamSERTIFIKAT']);
 
+    Route::get('/admin/bidang', [SuperadminController::class, 'setting']);
+
     Route::get('/admin/bidang', [SuperadminController::class, 'bidang']);
     Route::get('/admin/bidang/add', [SuperadminController::class, 'add_bidang']);
     Route::post('/admin/bidang/add', [SuperadminController::class, 'store_bidang']);
