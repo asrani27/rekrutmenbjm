@@ -22,7 +22,7 @@
       }
     </style>
     @stack('css')
-    
+
   </head>
   <body >
     <script src="/nf/dist/js/demo-theme.min.js?1692870487"></script>
@@ -53,7 +53,7 @@
                 </a>
               </div>
             </div>
-            
+
             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip"
             data-bs-placement="bottom">
                      <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -69,7 +69,7 @@
           <div class="collapse navbar-collapse" id="navbar-menu">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
               <ul class="navbar-nav">
-                
+
                 <li class="nav-item">
                   <a class="nav-link" href="./emails.html" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -81,14 +81,14 @@
                     </span>
                   </a>
                 </li>
-                
+
               </ul>
             </div>
           </div>
         </div>
       </header>
       <div class="page-wrapper">
-        
+
         <!-- Page body -->
         @yield('content')
 
@@ -239,8 +239,9 @@
     <!-- Tabler Core -->
     <script src="/nf/dist/js/tabler.min.js?1692870487" defer></script>
     <script src="/nf/dist/js/demo.min.js?1692870487" defer></script>
-    
+
+
 @stack('js')
-    
+
   </body>
 </html>
