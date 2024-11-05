@@ -327,8 +327,20 @@
   });
 </script>
 <script>
+  // Menyimpan posisi scroll saat halaman di-scroll
+  window.addEventListener('scroll', () => {
+      localStorage.setItem('scrollPosition', window.scrollY);
+  });
 
-
+  // Mengatur posisi scroll ketika halaman dimuat
+  window.addEventListener('load', () => {
+      const scrollPosition = localStorage.getItem('scrollPosition');
+      if (scrollPosition) {
+          window.scrollTo(0, parseInt(scrollPosition, 10));
+      }
+  });
+</script>
+<script>
 $(document).on('click', '.validasi', function() {
     $('#profile_id').val($(this).data('id'));
     $("#modal-validasi").modal('show');
