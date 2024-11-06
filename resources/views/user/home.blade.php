@@ -94,21 +94,21 @@
                             </div>
 
                             <a href="#" class="btn btn-primary btn-block">PANDUAN</a><br /><br />
-                            <h4>MATERI SOSIALISASI</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    MATERI SOSIALISASI #1
-                                    <a class="#" class="btn btn-primary">Unduh</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    MATERI SOSIALISASI #2
-                                    <a class="#" class="btn btn-primary">Unduh</a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    MATERI SOSIALISASI #3
-                                    <a class="#" class="btn btn-primary">Unduh</a>
-                                </li>
-                            </ul>
+                            @isset($data->fotoinstagram)
+                                <h4>MATERI SOSIALISASI</h4>
+                                <table>
+                                    <tr>
+                                    @foreach ($data->fotoinstagram as $key => $item)
+                                    <td class="text-center">
+                                        <h6>{{$item->realname}}</h6>
+                                            <img src="/storage/instagram/{{$item->filename}}" width="150px" height="150px"><br />
+
+                                            <a href="/user/downloadfotoig/{{$item->id}}"> Download</a>
+                                        </td>
+                                    @endforeach
+                                    </tr>
+                                </table>
+                            @endisset
                         </dd>
                         <hr />
                     @endif

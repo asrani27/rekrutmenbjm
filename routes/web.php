@@ -44,6 +44,8 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::post('/user/home/editprofile', [UserController::class, 'updateProfile']);
     Route::get('/user/home/essay', [UserController::class, 'essay']);
     Route::post('/user/home/essay', [UserController::class, 'updateEssay']);
+    Route::get('/user/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
+
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
