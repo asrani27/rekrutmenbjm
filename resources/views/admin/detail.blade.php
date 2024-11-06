@@ -195,7 +195,7 @@
         @csrf
         <div class="row">
             <div class="col">
-            <input type="file" id="files" class="form-control" name="files[]" multiple>
+            <input type="file" id="files" class="form-control" name="files[]" multiple required>
             <small class="form-text text-muted">Upload images in PNG or JPG format (max 2MB each).</small>
 
             </div>
@@ -207,6 +207,15 @@
         </div>
       </form>
 
+      @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
       @if ($data->fotoinstagram != null)
       <br/>
       <table>

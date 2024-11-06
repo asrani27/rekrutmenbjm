@@ -22,8 +22,18 @@ class SuperadminController extends Controller
     public function uploadFoto(Request $request, $id)
     {
         // Validasi file
+        // dd($request->hasFile('files'), $request->files);
+        // if ($request->hasFile('files')) {
+        //     foreach ($request->file('files') as $file) {
+        //         // Debug file
+        //         dd($file->getClientOriginalName(), $file->getMimeType(), $file->getSize());
+        //     }
+        // } else {
+        //     dd('No files uploaded.');
+        // }
+
         $request->validate([
-            'files.*' => 'required|file|mimes:jpg,png,pdf|max:4096', // sesuaikan validasi sesuai kebutuhan
+            'files.*' => 'required|file|mimes:jpg,png,jpeg|max:10240',
         ]);
 
         $uploadedFiles = $request->file('files');
