@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
 @push('css')
-    
+
 <style>
 
-    iframe { 
+    iframe {
         width: 100%;
         aspect-ratio: 16 / 9;
     }
@@ -15,10 +15,10 @@
 
   <div class="col-lg-2">
     @if ($data->file_foto == null)
-        
+
     <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url(/icon/person.gif)"></div>
     @else
-        
+
     <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url('/storage/foto/{{$data->file_foto}}')"></div>
     @endif
   </div>
@@ -50,12 +50,12 @@
           <dd class="col-9">: <span class="badge badge-outline text-blue">DI KIRIM</span></dd>
           @endif
           @if ($data->status_kirim == 2)
-              
+
           <dt class="col-3">STATUS</dt>
           <dd class="col-9">: <span class="badge badge-outline text-green">TERVALIDASI</span></dd>
           @endif
           @if ($data->status_kirim == 3)
-              
+
           <dt class="col-3">STATUS</dt>
           <dd class="col-9">: <span class="badge badge-outline text-red">TIDAK VALID</span></dd>
           <dt class="col-3">KETERANGAN</dt>
@@ -82,7 +82,7 @@
 
           <dt class="col-3">TANGGAL LAHIR</dt>
           <dd class="col-9">:  {{$data == null ? null : \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y')}} | {{$data == null ? null : \Carbon\Carbon::parse($data->tanggal_lahir)->age}} Tahun</dd>
-          
+
           <dt class="col-3">TEMPAT LAHIR</dt>
           <dd class="col-9">:  {{$data == null ? null : $data->tempat_lahir}}</dd>
 
@@ -167,7 +167,7 @@
 
         <dt class="col-3">ESSAY</dt>
           @if ($data->essay ==null)
-              
+
           <dd class="col-9">:</dd>
           @else
           <dd class="col-9"> {!!$data->essay!!}</dd>
@@ -176,7 +176,7 @@
     </div>
   </div>
 </div>
-  
+
 
 <div class="col-lg-2">
 </div>
@@ -187,7 +187,7 @@
         Upload Foto Instagram
       </h3>
       <div class="card-actions">
-        
+
       </div>
     </div>
     <div class="card-body">
@@ -196,6 +196,8 @@
         <div class="row">
             <div class="col">
             <input type="file" id="files" class="form-control" name="files[]" multiple>
+            <small class="form-text text-muted">Upload images in PNG or JPG format (max 2MB each).</small>
+
             </div>
             <div class="col">
             <button type="submit" class="btn btn-primary">Upload</button>
@@ -244,22 +246,22 @@
         PREVIEW IJAZAH</a><br/><br/>
       <a href="/admin/sertifikat/{{$data->id}}" class='btn btn-outline-primary w-50' target='_blank'>PREVIEW SERTIFIKAT</a><br/><br/>
       @endif
-        
-        
+
+
 
        <small> preview KTP dan Ijazah untuk enable Validasi</small><br/>
         @if ($data->status_kirim == 1)
           @if ($data->preview_ktp == null || $data->preview_ijazah == null)
-              
+
           <a href="#" class='btn btn-success disabled w-50' disabled> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg> VALIDASI</a><br/><br/>
           @else
-              
+
           <a href="#" class='btn btn-success validasi w-50' data-id="{{$data->id}}"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg> VALIDASI</a><br/><br/>
           @endif
         @endif
-        
+
     </div>
-    
+
   </div>
 </div>
 
@@ -272,7 +274,7 @@
         <h5 class="modal-title">Validasi Data</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        
+
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-12">
@@ -286,7 +288,7 @@
               </select>
             </div>
           </div>
-          
+
           <div class="col-lg-12">
             <div>
               <label class="form-label">Keterangan</label>
@@ -351,9 +353,9 @@ $(document).on('click', '.validasi', function() {
       const allowedExtensions = ['jpg', 'jpeg', 'png'];
       const files = document.getElementById('files').files;
       const errorMessage = document.getElementById('error-message');
-      
+
       errorMessage.textContent = ''; // Reset pesan error
-      
+
       for (let i = 0; i < files.length; i++) {
           const file = files[i];
           const fileExtension = file.name.split('.').pop().toLowerCase();
