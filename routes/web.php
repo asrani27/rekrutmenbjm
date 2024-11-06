@@ -37,6 +37,7 @@ Route::get('/email/verification-notification', function () {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::middleware(['auth', 'verified', 'user'])->group(function () {
+    Route::get('/downloadfotoigkandidat/{id}', [UserController::class, 'downloadFoto']);
     Route::get('/user/home/kirimlamaran', [UserController::class, 'kirim']);
     Route::get('/user/home', [UserController::class, 'home']);
     Route::post('/user/home/upload', [UserController::class, 'upload']);
@@ -47,13 +48,11 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::get('/user/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
 });
 
-Route::middleware(['auth', 'superadmin,user'])->group(function () {
-    Route::get('/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
-});
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
     Route::post('/admin/detailpendaftar/{id}', [SuperadminController::class, 'uploadFoto']);
     Route::get('/deletefotoig/{id}', [SuperadminController::class, 'deleteFoto']);
+    Route::get('/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
     Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);
     Route::get('/admin/deletependaftar/{id}', [SuperadminController::class, 'deletePendaftar']);
     Route::post('/admin/validasi', [SuperadminController::class, 'validasi']);

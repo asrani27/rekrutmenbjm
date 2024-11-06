@@ -270,7 +270,7 @@
               @foreach ($data->fotoinstagram as $fi)
               <td>
                   <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
-                  <a href="/downloadfotoig/{{$fi->id}}"> Download</a> 
+                  <a href="/downloadfotoigkandidat/{{$fi->id}}"> Download</a> 
               </td>
               @endforeach
             </tr>

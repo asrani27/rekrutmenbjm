@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Image;
+use Carbon\Carbon;
 use App\Models\Bidang;
 use App\Models\Sektor;
 use App\Models\Upload;
 use App\Models\Profile;
-use Carbon\Carbon;
+use App\Models\Instagram;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManager;
 
+use Intervention\Image\ImageManager;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -21,6 +22,21 @@ use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class UserController extends Controller
 {
+    public function downloadFoto($id)
+    {
+        $ig = Instagram::find($id);
+        $filePath = 'instagram/' . $ig->filename;
+
+        // Cek apakah file ada
+        if (Storage::disk('public')->exists($filePath)) {
+            // Mengunduh file
+            $realname = $ig->realname;
+            return Storage::disk('public')->download($filePath, $realname);
+        } else {
+            return response()->json(['error' => 'File tidak ditemukan.'], 404);
+        }
+    }
+
     public function home()
     {
         $date = Carbon::now();
