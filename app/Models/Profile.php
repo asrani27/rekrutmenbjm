@@ -23,6 +23,6 @@ class Profile extends Model
     }
     public function fotoinstagram()
     {
-        return $this->hasMany(Instagram::class, 'profile_id');
+        return $this->hasMany(Instagram::class, 'profile_id')->orderBy('realname','asc');
     }
 }
