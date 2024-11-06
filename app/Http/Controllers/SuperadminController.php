@@ -50,7 +50,7 @@ class SuperadminController extends Controller
     public function home()
     {
         $bidang = Bidang::get();
-        $data = Profile::orderBy('id', 'ASC')->get();
+        $data = Profile::with('fotoinstagram')->orderBy('id', 'ASC')->get();
         $sektor = Sektor::get();
         return view('admin.home', compact('data', 'bidang', 'sektor'));
     }
