@@ -27,7 +27,7 @@ class UserController extends Controller
         $data = Auth::user()->profile;
         $isAvailable = $date->greaterThan(Carbon::tomorrow()->setTime(12, 0));
 
-        return view('user.home', compact('data','isAvailable'));
+        return view('user.home', compact('data', 'isAvailable'));
     }
 
     public function kirim()

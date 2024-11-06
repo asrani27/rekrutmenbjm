@@ -248,6 +248,38 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            Download Foto Instagram
+          </h3>
+          <div class="card-actions">
+    
+          </div>
+        </div>
+        <div class="card-body">
+          @if ($data->fotoinstagram != null)
+          <br/>
+          <table>
+            <tr>
+              @foreach ($data->fotoinstagram as $fi)
+              <td>
+                  <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
+                  <a href="/downloadfotoig/{{$fi->id}}"> Download</a> 
+              </td>
+              @endforeach
+            </tr>
+          </table>
+          @endif
+        </div>
+      </div>
+    </div>
+
     @error('file')
         <div class="col-lg-12">
             <div class="alert alert-important alert-danger alert-dismissible" role="alert">
