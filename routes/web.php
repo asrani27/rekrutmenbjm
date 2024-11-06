@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
     Route::get('/user/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
 });
 
-Route::middleware(['auth', 'role:superadmin,user'])->group(function () {
+Route::middleware(['auth', 'superadmin,user'])->group(function () {
     Route::get('/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
 });
 Route::middleware(['auth', 'superadmin'])->group(function () {
