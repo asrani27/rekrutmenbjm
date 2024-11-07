@@ -41,7 +41,7 @@ class UserController extends Controller
     {
         $date = Carbon::now();
         $data = Auth::user()->profile;
-        $isAvailable = false;
+        $isAvailable = true;
 
         return view('user.home', compact('data', 'isAvailable'));
     }
