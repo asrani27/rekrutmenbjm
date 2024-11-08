@@ -87,6 +87,10 @@
                     @if ($data->status_kirim == 2 && $isAvailable)
                         <dt class="col-3">STATUS</dt>
                         <dd class="col-9">: <span class="badge badge-outline text-green">LOLOS</span></dd>
+                        <dt class="col-3">KETERANGAN</dt>
+                        <dd class="col-9">: <span
+                            class="badge badge-outline text-black">{{ $data == null ? null : $data->keterangan }}</span>
+                        </dd>
                         <dd class="col-12">
                             <div class="alert alert-success">
                                 <strong>SELAMAT!</strong>Anda dinyatakan <b>LOLOS</b> ke tahap berikutnya, silahkan mengklik
