@@ -75,20 +75,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif
-        @if ($data->fotoinstagram != null)
-        <br/>
-        <table>
-          <tr>
-            @foreach ($data->fotoinstagram as $fi)
-            <td>
-                <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
-                <a href="/downloadfotoig/{{$fi->id}}"> Download</a> | <a href="/deletefotoig/{{$fi->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
-            </td>
-            @endforeach
-          </tr>
-        </table>
-        @endif
+        
       </div>
     </div>
   </div>
