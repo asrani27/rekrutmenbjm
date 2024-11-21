@@ -88,6 +88,17 @@ class SuperadminController extends Controller
             return response()->json(['error' => 'File tidak ditemukan.'], 404);
         }
     }
+
+    public function updateInstagram(Request $req, $id)
+    {
+        Profile::find($id)->update([
+            'like' => $req->like,
+            'comment' => $req->comment,
+            'share' => $req->share,
+        ]);
+
+        return back()->with('success', 'berhasil');
+    }
     public function filter()
     {
         $bidang_id = request()->get('bidang_id');

@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified', 'user'])->group(function () {
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/admin/detailpendaftar/{id}', [SuperadminController::class, 'detailPendaftar']);
     Route::post('/admin/detailpendaftar/{id}', [SuperadminController::class, 'uploadFoto']);
+    Route::post('/admin/detailpendaftar/{id}/instagram', [SuperadminController::class, 'updateInstagram']);
     Route::get('/deletefotoig/{id}', [SuperadminController::class, 'deleteFoto']);
     Route::get('/downloadfotoig/{id}', [SuperadminController::class, 'downloadFoto']);
     Route::get('/admin/berkaspendaftar/{id}', [SuperadminController::class, 'berkasPendaftar']);

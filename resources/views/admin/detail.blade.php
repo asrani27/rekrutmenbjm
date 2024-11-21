@@ -11,6 +11,21 @@
     </style>
 @endpush
 @section('content')
+@if(session()->has('success'))
+<div class="col-lg-12">
+  <div class="alert alert-important alert-success alert-dismissible" role="alert">
+    <div class="d-flex">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
+      </div>
+      <div>
+        {{ session()->get('success') }}
+      </div>
+    </div>
+    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+  </div>
+</div>
+@endif
 
 
   <div class="col-lg-2">
@@ -21,6 +36,64 @@
 
     <div class="img-responsive img-responsive-1x1 rounded-3 border" style="background-image: url('/storage/foto/{{$data->file_foto}}')"></div>
     @endif
+  </div>
+
+  <div class="col-lg-10">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          Jumlah Like, Comment, and Share
+        </h3>
+        <div class="card-actions">
+
+        </div>
+      </div>
+      <div class="card-body">
+        <form id="uploadForm" action="/admin/detailpendaftar/{{$data->id}}/instagram" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="row g-2">
+            <div class="col-3">
+              <input type="text" class="form-control" name="like" value="{{$data->like}}" placeholder="like" required  onkeypress="return hanyaAngka(event)"/>
+            </div>
+            <div class="col-3">
+              <input type="text" class="form-control" name="comment" value="{{$data->comment}}" placeholder="comment" required  onkeypress="return hanyaAngka(event)"/>
+            </div>
+            <div class="col-3">
+              <input type="text" class="form-control" name="share" value="{{$data->share}}" placeholder="share" required  onkeypress="return hanyaAngka(event)"/>
+            </div>
+            <div class="col-3">
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </div>
+        </form>
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        @if ($data->fotoinstagram != null)
+        <br/>
+        <table>
+          <tr>
+            @foreach ($data->fotoinstagram as $fi)
+            <td>
+                <img src="/storage/instagram/{{$fi->filename}}" width="150px" height="150px"><br/>
+                <a href="/downloadfotoig/{{$fi->id}}"> Download</a> | <a href="/deletefotoig/{{$fi->id}}" onclick="return confirm('Are you sure you want to delete this item?');">Hapus</a>
+            </td>
+            @endforeach
+          </tr>
+        </table>
+        @endif
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-2">
   </div>
   <div class="col-lg-10">
     <div class="card">
@@ -356,6 +429,15 @@ $(document).on('click', '.validasi', function() {
     $('#profile_id').val($(this).data('id'));
     $("#modal-validasi").modal('show');
   });
+</script>
+<script>
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+      return false;
+    return true;
+  }
 </script>
 <script>
   document.getElementById('uploadForm').addEventListener('submit', function(event) {

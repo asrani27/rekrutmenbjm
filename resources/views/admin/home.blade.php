@@ -87,6 +87,7 @@
                             <th>Nama</th>
                             <th>Sektor Yang Di Pilih</th>
                             <th>Status</th>
+                            <th>Like, Comment, Share</th>
                             <th class="w-9"></th>
                         </tr>
                     </thead>
@@ -126,6 +127,24 @@
                                     @if ($item->status_kirim == 3)
                                         <span class="badge badge-outline text-red">TIDAK VALID</span>
                                     @endif
+                                </td>
+                                <td>
+
+                                    <a href="#" class="text-secondary">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                                        {{$item->like == null ? 0 : $item->like}}
+                                    </a>
+                                    <a href="#" class="text-secondary">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 9h8"></path><path d="M8 13h6"></path><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"></path></svg>
+                                        {{$item->comment == null ? 0 : $item->comment}}
+                                    </a>
+                                    <a href="#" class="text-secondary">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/message -->
+                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-share"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M8.7 10.7l6.6 -3.4" /><path d="M8.7 13.3l6.6 3.4" /></svg>
+                                        {{$item->share == null ? 0 : $item->share}}
+                                    </a>
                                 </td>
                                 <td>
 
