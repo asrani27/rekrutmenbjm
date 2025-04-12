@@ -104,32 +104,32 @@ class LoginController extends Controller
 
         //     return back()->with('captcha', 'Checklist Captcha');
         // } else {
-            // $turnstile = new TurnstileLaravel;
-            // $response = $turnstile->validate($req->get('cf-turnstile-response'));
+        // $turnstile = new TurnstileLaravel;
+        // $response = $turnstile->validate($req->get('cf-turnstile-response'));
 
-            $login = request()->input('username');
-            $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $login = request()->input('username');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-            // if ($response['status'] == true) {
+        // if ($response['status'] == true) {
 
-                // $remember = $req->remember ? true : false;
-                $credential = $req->only('username', 'password');
+        // $remember = $req->remember ? true : false;
+        $credential = $req->only('username', 'password');
 
-                if (Auth::attempt([$field => $login, 'password' => request()->password], true)) {
+        if (Auth::attempt([$field => $login, 'password' => request()->password], true)) {
 
-                    if (Auth::user()->roles === 'user') {
-                        return redirect('/user/home');
-                    } else {
-                        return redirect('/admin/home');
-                    }
-                } else {
-                    $req->flash();
-                    return redirect('/login')->with('error', 'Wrong Username Or Password');
-                }
-            // } else {
-            //     $req->flash();
-            //     return back()->with('error', 'Check Captcha');
-            // }
+            if (Auth::user()->roles === 'user') {
+                return redirect('/user/home');
+            } else {
+                return redirect('/admin/home');
+            }
+        } else {
+            $req->flash();
+            return redirect('/login')->with('error', 'Wrong Username Or Password');
+        }
+        // } else {
+        //     $req->flash();
+        //     return back()->with('error', 'Check Captcha');
+        // }
         // }
     }
 
@@ -140,7 +140,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-
+            dd(Socialite::driver('google'));
             $user = Socialite::driver('google')->stateless()->user();
             //dd($user);
             $finduser = User::where('gauth_id', $user->id)->first();
