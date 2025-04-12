@@ -140,7 +140,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            dd(Socialite::driver('google')->stateless()->user());
+
             $user = Socialite::driver('google')->stateless()->user();
             //dd($user);
             $finduser = User::where('gauth_id', $user->id)->first();
